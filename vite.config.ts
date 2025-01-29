@@ -16,7 +16,9 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-
+    legacy: {
+      skipWebSocketTokenCheck: true,
+    },
     plugins: [crx({ manifest }), react()],
   }
 })
