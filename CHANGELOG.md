@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.1
+
+### Patch Changes
+
+- Project configuration completed: CI/CD, Tailwind, Vite & TS setup
+
 ```txt
 Summary
   1. document grouping follow 'SemVer2.0' protocol
