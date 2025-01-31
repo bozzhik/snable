@@ -3,4 +3,5 @@
 
 body {
   @apply min-w-[25rem] bg-background text-white;
+  @apply text-base font-sans;
 }
