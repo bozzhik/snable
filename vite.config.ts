@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
-import { crx } from '@crxjs/vite-plugin'
+import {defineConfig} from 'vite'
+import {crx} from '@crxjs/vite-plugin'
 import react from '@vitejs/plugin-react'
 
 import manifest from './src/manifest'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({mode}) => {
   return {
     build: {
       emptyOutDir: true,
@@ -26,6 +26,6 @@ export default defineConfig(({ mode }) => {
     legacy: {
       skipWebSocketTokenCheck: true,
     },
-    plugins: [crx({ manifest }), react()],
+    plugins: [crx({manifest}), react()],
   }
 })

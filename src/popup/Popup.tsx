@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-
-import './Popup.css'
+import {useState, useEffect} from 'react'
 
 export const Popup = () => {
   const [count, setCount] = useState(0)
@@ -19,8 +17,8 @@ export const Popup = () => {
   }, [])
 
   useEffect(() => {
-    chrome.storage.sync.set({ count })
-    chrome.runtime.sendMessage({ type: 'COUNT', count })
+    chrome.storage.sync.set({count})
+    chrome.runtime.sendMessage({type: 'COUNT', count})
   }, [count])
 
   return (
