@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.2
+
+### Patch Changes
+
+- init `views` and `modules` project divisions
+
 ## 0.0.1
 
 ### Patch Changes
