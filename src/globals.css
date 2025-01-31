@@ -1,6 +1,6 @@
 @import 'tailwindcss';
+@config "../tailwind.config.ts";
 
 body {
-  min-width: 20rem;
-  margin: 0;
+  @apply min-w-[25rem] bg-background text-white;
 }
