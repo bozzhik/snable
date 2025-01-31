@@ -1,4 +1,6 @@
 import {defineConfig} from 'vite'
+import {resolve} from 'path'
+
 import {crx} from '@crxjs/vite-plugin'
 import react from '@vitejs/plugin-react'
 
@@ -25,6 +27,13 @@ export default defineConfig(({mode}) => {
     },
     legacy: {
       skipWebSocketTokenCheck: true,
+    },
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src'),
+        '~': resolve(__dirname, './src/components'),
+        $: resolve(__dirname, './src/assets/'),
+      },
     },
     plugins: [crx({manifest}), react()],
   }
