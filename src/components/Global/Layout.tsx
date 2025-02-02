@@ -1,10 +1,11 @@
 import Header from '~/Global/Header'
+import Container from '~/Global/Container'
 
-export default function Layout({children}: {children: React.ReactNode}) {
+export default function Layout({children, className}: {children: React.ReactNode; className?: string}) {
   return (
     <>
       <Header />
-      {children}
+      <Container className={className}>{children}</Container>
     </>
   )
 }
