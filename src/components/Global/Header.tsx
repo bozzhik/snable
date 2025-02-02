@@ -1,4 +1,5 @@
 import {cn} from '@/lib/utils'
+import Button from '~/UI/Button'
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
         <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.05] group-hover:bg-white/80 duration-300')}></div>
       </div>
 
-      <button className="px-4 bg-control hover:bg-control/70 duration-300 rounded-lg">Button</button>
+      <Button variant="secondary">Button</Button>
     </div>
   )
 }
