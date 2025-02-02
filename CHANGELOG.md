@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.3
+
+### Patch Changes
+
+- 4205568: init `Header` Global component
+- f07b83c: init `Container` Global component
+- 50cf64c: init `Layout` Global component
+- 11be4c6: init `Button` UI component
+
 ## 0.0.2
 
 ### Patch Changes
@@ -12,16 +21,6 @@
 
 - Project configuration completed: CI/CD, Tailwind, Vite & TS setup
 
-```txt
-Summary
-  1. document grouping follow 'SemVer2.0' protocol
-  2. use 'PATCH' as a minimum granularity
-  3. use concise descriptions
-  4. type: feat \ fix \ update \ perf \ remove \ docs \ chore
-  5. version timestamp follow the yyyy.MM.dd format
-```
-
 ## 0.0.0 [2025.01.29]
 
-- feat: initial
-- feat: generator by ![create-chrome-ext](https://github.com/guocaoyi/create-chrome-ext)
+- init `extension` project using `create-chrome-ext`
