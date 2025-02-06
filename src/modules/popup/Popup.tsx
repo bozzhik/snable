@@ -6,23 +6,22 @@ import FontsUnit from '~~popup/FontsUnit'
 import ColorsUnit from '~~popup/ColorsUnit'
 
 export function Popup() {
-  const [fonts, setFonts] = useState<Units['fonts']>()
-  const [colors, setColors] = useState<Units['colors']>()
+  const [units, setUnits] = useState<Units>()
 
   useEffect(() => {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id!, {type: 'EXTRACT_UNITS'}, (response: Units) => {
-        if (!response) return
-        setFonts(response.fonts)
-        setColors(response.colors)
+        if (response) {
+          setUnits(response)
+        }
       })
     })
   }, [])
 
   return (
     <Layout className="space-y-2.5">
-      <FontsUnit data={fonts} />
-      <ColorsUnit data={colors} />
+      <FontsUnit data={units?.fonts} />
+      <ColorsUnit data={units?.colors} />
     </Layout>
   )
 }
