@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "_scripts/*": ["./src/contentScript/*"],
       "~/*": ["./src/components/*"],
       "~~popup/*": ["./src/components/modules/popup/*"],
       "$/*": ["./src/assets/*"]

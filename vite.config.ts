@@ -31,6 +31,7 @@ export default defineConfig(({mode}) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
+        _scripts: resolve(__dirname, './src/contentScript/'),
         '~': resolve(__dirname, './src/components'),
         '~~popup': resolve(__dirname, './src/components/modules/popup'),
         $: resolve(__dirname, './src/assets/'),
