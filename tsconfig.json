@@ -20,6 +20,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "_scripts/*": ["./src/contentScript/*"],
+      "_bg/*": ["./src/background/*"],
       "~/*": ["./src/components/*"],
       "~~popup/*": ["./src/components/modules/popup/*"],
       "$/*": ["./src/assets/*"]
