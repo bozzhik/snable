@@ -1,9 +1,9 @@
 {
   "name": "snable",
-  "displayName": "snable",
-  "version": "0.0.2",
+  "displayName": "Snable: UI Inspector && CSS Scanner",
+  "version": "0.1.0",
   "author": "bozzhik",
-  "description": "",
+  "description": "Analyze any web page that catches your eye! Get a detailed overview of colors, fonts, and other visual elements to inspire your next design.",
   "type": "module",
   "license": "MIT",
   "keywords": [
@@ -24,6 +24,7 @@
     "zip": "pnpm run build && node src/zip.js"
   },
   "dependencies": {
+    "lucide-react": "^0.475.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
