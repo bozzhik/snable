@@ -5,7 +5,7 @@ export type FontData = {
 
 const fallbackFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont'])
 
-const bullshitFonts = new Set(['Arial', 'Times New Roman', 'Helvetica', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Courier New', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Menlo', 'Monaco'])
+const bullshitFonts = new Set(['Arial', 'Roboto', 'Roboto Draft', 'Helvetica', 'SFMono-Regular', 'Times New Roman', 'Consolas', 'Liberation Mono', 'Courier New', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Menlo', 'Monaco'])
 
 function normalizeFontName(font: string): string {
   return font.replace(/\s+/g, '').toLowerCase()

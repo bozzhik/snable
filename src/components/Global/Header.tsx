@@ -4,8 +4,9 @@ import {BOX_STYLES} from '~/Global/Container'
 import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
 
-import Button from '~/UI/Button'
 import {X, Settings, Ban} from 'lucide-react'
+import Button from '~/UI/Button'
+import {H3, SPAN} from '~/UI/Typography'
 
 export default function Header() {
   const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
@@ -49,9 +50,9 @@ export default function Header() {
             )}
           </div>
 
-          <div className="-space-y-1">
-            {tabData.title && <p className={cn('text-lg line-clamp-1', tabData.title.length > 24 && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{tabData.title.slice(0, 28)}</p>}
-            {tabData.url && <p className="text-sm text-gray">{getDomain(tabData.url)}</p>}
+          <div className="-space-y-0.5">
+            {tabData.title && <H3 className={cn('text-white line-clamp-1', tabData.title.length > 24 && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{tabData.title.slice(0, 28)}</H3>}
+            {tabData.url && <SPAN>{getDomain(tabData.url)}</SPAN>}
           </div>
         </div>
       </div>

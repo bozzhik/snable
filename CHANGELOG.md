@@ -1,11 +1,19 @@
 # CHANGELOG
 
+## 0.0.7
+
+### Patch Changes
+
+- 107fa3b: init `Typography` UI component (dynamic)
+- f2247e6: add `isContrasted` param to `colorExtractor` content script
+- 95f2dcd: add `bullshitFonts` handling to `fontsExtractor` content script
+
 ## 0.0.6
 
 ### Patch Changes
 
-- ec173f9: pass `GET_TAB_INFO` data into `Header` Global component
 - 2e08f62: finalize `Header` Global component
+- ec173f9: pass `GET_TAB_INFO` data into `Header` Global component
 - d9eb5ec: init `getTabInfo` background worker for parsing `activeTab` data
 
 ## 0.0.5
