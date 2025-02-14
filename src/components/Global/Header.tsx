@@ -5,13 +5,10 @@ import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
 
 import Button from '~/UI/Button'
+import {X, Settings, Ban} from 'lucide-react'
 
 export default function Header() {
-  const [tabData, setTabData] = useState<TabInfo>({
-    favicon: null,
-    url: '',
-    title: '',
-  })
+  const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
 
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
@@ -19,28 +16,49 @@ export default function Header() {
     })
   }, [])
 
+  function getDomain(url: string): string {
+    try {
+      return new URL(url).hostname
+    } catch {
+      return url
+    }
+  }
+
+  const itemsStyle = {
+    box: 'size-[42px] bg-control rounded-lg grid place-items-center',
+    icon: 'text-gray group-hover:text-white group-hover:scale-[1.05] duration-300',
+  }
+
   return (
-    <div className={cn(BOX_STYLES, 'py-3 flex justify-between border-b-3 border-control')}>
-      <div className={cn('size-10 bg-control rounded-lg p-2', 'group')}>
-        <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <div className="size-5 flex items-center justify-center rounded-sm bg-gray-200">
-          {tabData.favicon ? (
-            <img src={tabData.favicon} alt="Favicon" className="size-full rounded-sm" />
-          ) : (
-            <span className="text-xs text-gray-500">🌐</span> // Placeholder icon
-          )}
+    <header className={cn(BOX_STYLES, 'py-3 flex justify-between border-b-3 border-control')}>
+      <div className="flex gap-1 items-center">
+        <div className={cn(itemsStyle.box, 'p-2 group')}>
+          <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
         </div>
 
-        <div>
-          {tabData.title && <p className="text-sm font-medium">{tabData.title}</p>}
-          {tabData.url && <p className="text-xs text-gray-500">{tabData.url}</p>}
+        <X className="size-4 text-gray" />
+
+        <div className="flex gap-3 items-center">
+          <div className={cn(itemsStyle.box, 'bg-transparent overflow-hidden')}>
+            {tabData.favicon ? (
+              <img src={tabData.favicon} className="size-full" />
+            ) : (
+              <div className={cn(itemsStyle.box, 'bg-control p-2 group')}>
+                <Ban className={cn(itemsStyle.icon, 'size-6')} />
+              </div>
+            )}
+          </div>
+
+          <div className="-space-y-1">
+            {tabData.title && <p className={cn('text-lg line-clamp-1', tabData.title.length > 24 && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{tabData.title.slice(0, 28)}</p>}
+            {tabData.url && <p className="text-sm text-gray">{getDomain(tabData.url)}</p>}
+          </div>
         </div>
       </div>
 
-      <Button variant="secondary">Button</Button>
-    </div>
+      <Button to="https://snable.website" className={cn('px-[11px]', 'grid place-items-center group')}>
+        <Settings className={cn(itemsStyle.icon, 'size-[22px]')} />
+      </Button>
+    </header>
   )
 }
