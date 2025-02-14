@@ -3,13 +3,15 @@ export type FontData = {
   weights: string[]
 }
 
-const ignoredFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'])
+const fallbackFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont'])
+
+const bullshitFonts = new Set(['Arial', 'Times New Roman', 'Helvetica', 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Courier New', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Menlo', 'Monaco'])
 
 function normalizeFontName(font: string): string {
   return font.replace(/\s+/g, '').toLowerCase()
 }
 
-const ignoredFontsNormalized = new Set(Array.from(ignoredFonts).map((font) => normalizeFontName(font)))
+const fallbackFontsNormalized = new Set(Array.from(fallbackFonts).map((font) => normalizeFontName(font)))
 
 export function fontsExtractor(): FontData[] {
   const elements = document.querySelectorAll('*')
@@ -24,7 +26,7 @@ export function fontsExtractor(): FontData[] {
       const fonts = fontFamily
         .split(',')
         .map((font) => cleanFontName(font.trim().replace(/['"]/g, '')))
-        .filter((font) => !ignoredFontsNormalized.has(normalizeFontName(font)))
+        .filter((font) => !fallbackFontsNormalized.has(normalizeFontName(font)))
 
       fonts.forEach((font) => {
         if (!fontMap.has(font)) {
@@ -40,6 +42,11 @@ export function fontsExtractor(): FontData[] {
     weights: Array.from(weights).sort(),
   }))
 
+  const nonBullshitFonts = sortedFonts.filter((fontData) => !bullshitFonts.has(fontData.font))
+  if (nonBullshitFonts.length > 0) {
+    return nonBullshitFonts
+  }
+
   return sortedFonts
 }
 
@@ -52,7 +59,7 @@ function cleanFontName(font: string): string {
       .replace(/[a-f0-9]{6}/gi, '')
       // remove standalone numbers
       .replace(/\b\d+\b/g, '')
-      // add space between words in camelcase (e.g., "ClashDisplay" -> "Clash Display")
+      // add space between words in camelCase (e.g., "ClashDisplay" -> "Clash Display")
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       // replace underscores with spaces
       .replace(/_/g, ' ')
