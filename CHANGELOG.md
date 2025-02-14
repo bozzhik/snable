@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.0
+
+### Minor Changes
+
+- e1b8856: add custom `icons` for extension
+- e1b8856: update extension `details` for alpha release
+
 ## 0.0.7
 
 ### Patch Changes
