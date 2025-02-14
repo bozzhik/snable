@@ -5,6 +5,12 @@ export type FontData = {
 
 const ignoredFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'])
 
+function normalizeFontName(font: string): string {
+  return font.replace(/\s+/g, '').toLowerCase()
+}
+
+const ignoredFontsNormalized = new Set(Array.from(ignoredFonts).map((font) => normalizeFontName(font)))
+
 export function fontsExtractor(): FontData[] {
   const elements = document.querySelectorAll('*')
   const fontMap = new Map<string, Set<string>>()
@@ -18,15 +24,13 @@ export function fontsExtractor(): FontData[] {
       const fonts = fontFamily
         .split(',')
         .map((font) => cleanFontName(font.trim().replace(/['"]/g, '')))
-        .filter((font) => !ignoredFonts.has(font))
+        .filter((font) => !ignoredFontsNormalized.has(normalizeFontName(font)))
 
       fonts.forEach((font) => {
-        const baseFont = font.replace(/\bFallback\b/, '').trim()
-
-        if (!fontMap.has(baseFont)) {
-          fontMap.set(baseFont, new Set())
+        if (!fontMap.has(font)) {
+          fontMap.set(font, new Set())
         }
-        fontMap.get(baseFont)!.add(fontWeight)
+        fontMap.get(font)!.add(fontWeight)
       })
     }
   })
@@ -40,10 +44,20 @@ export function fontsExtractor(): FontData[] {
 }
 
 function cleanFontName(font: string): string {
-  return font
-    .replace(/_Fallback$/, '')
-    .replace(/_\d+$/, '')
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/_/g, ' ')
-    .trim()
+  return (
+    font
+      // remove any occurrence of "fallback"
+      .replace(/Fallback/gi, '')
+      // remove 6-character hex codes
+      .replace(/[a-f0-9]{6}/gi, '')
+      // remove standalone numbers
+      .replace(/\b\d+\b/g, '')
+      // add space between words in camelcase (e.g., "ClashDisplay" -> "Clash Display")
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      // replace underscores with spaces
+      .replace(/_/g, ' ')
+      // remove excess spaces
+      .replace(/\s+/g, ' ')
+      .trim()
+  )
 }
