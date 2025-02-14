@@ -1,6 +1,9 @@
 export type ColorData = {
   color: string
+  isContrasted: boolean
 }
+
+const UNIT_COLOR = '#191919'
 
 export function colorsExtractor(): ColorData[] {
   const elements = document.querySelectorAll('*')
@@ -19,7 +22,10 @@ export function colorsExtractor(): ColorData[] {
     })
   })
 
-  return Array.from(colorSet).map((color) => ({color}))
+  return Array.from(colorSet).map((color) => ({
+    color,
+    isContrasted: isColorContrasted(color, UNIT_COLOR),
+  }))
 }
 
 function convertToHex(color: string): string | null {
@@ -32,4 +38,33 @@ function convertToHex(color: string): string | null {
 
   ctx.fillStyle = color
   return ctx.fillStyle
+}
+
+function getLuminance(color: string): number {
+  const hex = color.startsWith('#') ? color.slice(1) : color
+  const rgb = parseInt(hex, 16)
+  const r = (rgb >> 16) & 0xff
+  const g = (rgb >> 8) & 0xff
+  const b = (rgb >> 0) & 0xff
+
+  const [rNorm, gNorm, bNorm] = [r, g, b].map((c) => {
+    const cNorm = c / 255
+    return cNorm <= 0.03928 ? cNorm / 12.92 : Math.pow((cNorm + 0.055) / 1.055, 2.4)
+  })
+
+  return 0.2126 * rNorm + 0.7152 * gNorm + 0.0722 * bNorm
+}
+
+function getContrastRatio(color1: string, color2: string): number {
+  const luminance1 = getLuminance(color1)
+  const luminance2 = getLuminance(color2)
+
+  const lighter = Math.max(luminance1, luminance2)
+  const darker = Math.min(luminance1, luminance2)
+
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
+function isColorContrasted(color: string, bgColor: string, threshold: number = 4.5): boolean {
+  return getContrastRatio(color, bgColor) >= threshold
 }
