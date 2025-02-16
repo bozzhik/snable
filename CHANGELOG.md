@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.1
+
+### Patch Changes
+
+- b8efa2a: fix `zip` gulp script due changed `manifest`
+
 ## 0.1.0
 
 ### Minor Changes
@@ -62,6 +68,6 @@
 
 - Project configuration completed: CI/CD, Tailwind, Vite & TS setup
 
-## 0.0.0 [2025.01.29]
+## 0.0.0
 
 - init `extension` project using `create-chrome-ext`

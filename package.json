@@ -1,9 +1,9 @@
 {
   "name": "snable",
-  "displayName": "Snable: UI Inspector && CSS Scanner",
-  "version": "0.1.0",
+  "displayName": "Snable: UI Inspector & CSS Scanner",
+  "version": "0.1.1",
   "author": "bozzhik",
-  "description": "Analyze any web page that catches your eye! Get a detailed overview of colors, fonts, and other visual elements to inspire your next design.",
+  "description": "Analyze any web page that catches your eye! Get a detailed overview of colors, fonts, and visual elements for design inspiration.",
   "type": "module",
   "license": "MIT",
   "keywords": [
