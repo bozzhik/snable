@@ -23,6 +23,7 @@
       "_bg/*": ["./src/background/*"],
       "~/*": ["./src/components/*"],
       "~~popup/*": ["./src/components/modules/popup/*"],
+      "_modules/*": ["./src/modules/*"],
       "$/*": ["./src/assets/*"]
     }
   },
