@@ -7,10 +7,18 @@ export type Units = {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.type === 'EXTRACT_UNITS') {
-    sendResponse({
-      fonts: fontsExtractor(),
-      colors: colorsExtractor(),
-    } as Units)
+  switch (request.type) {
+    case 'EXTRACT_UNITS':
+      sendResponse({
+        fonts: fontsExtractor(),
+        colors: colorsExtractor(),
+      } as Units)
+      break
+
+    case 'EXTRACT_COLORS':
+      sendResponse({
+        colors: colorsExtractor(),
+      })
+      break
   }
 })
