@@ -8,6 +8,11 @@ import {X, Settings, Ban} from 'lucide-react'
 import Button from '~/UI/Button'
 import {H3, SPAN} from '~/UI/Typography'
 
+export const ITEMS_STYLE = {
+  box: 'size-[42px] bg-control rounded-lg grid place-items-center',
+  icon: 'text-gray group-hover:text-white group-hover:scale-[1.05] duration-300',
+}
+
 export default function Header() {
   const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
 
@@ -25,27 +30,22 @@ export default function Header() {
     }
   }
 
-  const itemsStyle = {
-    box: 'size-[42px] bg-control rounded-lg grid place-items-center',
-    icon: 'text-gray group-hover:text-white group-hover:scale-[1.05] duration-300',
-  }
-
   return (
     <header className={cn(BOX_STYLES, 'py-3 flex justify-between border-b-3 border-control')}>
       <div className="flex gap-1 items-center">
-        <div className={cn(itemsStyle.box, 'p-2 group')}>
+        <div className={cn(ITEMS_STYLE.box, 'p-2 group')}>
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
         </div>
 
         <X className="size-4 text-gray" />
 
         <div className="flex gap-3 items-center">
-          <div className={cn(itemsStyle.box, 'bg-transparent overflow-hidden')}>
+          <div className={cn(ITEMS_STYLE.box, 'bg-transparent overflow-hidden')}>
             {tabData.favicon ? (
               <img src={tabData.favicon} className="size-full" />
             ) : (
-              <div className={cn(itemsStyle.box, 'bg-control p-2 group')}>
-                <Ban className={cn(itemsStyle.icon, 'size-6')} />
+              <div className={cn(ITEMS_STYLE.box, 'bg-control p-2 group')}>
+                <Ban className={cn(ITEMS_STYLE.icon, 'size-6')} />
               </div>
             )}
           </div>
@@ -57,8 +57,8 @@ export default function Header() {
         </div>
       </div>
 
-      <Button to="https://snable.website" className={cn('px-[11px]', 'grid place-items-center group')}>
-        <Settings className={cn(itemsStyle.icon, 'size-[22px]')} />
+      <Button href="https://snable.website" className={cn('px-[11px]', 'grid place-items-center group')}>
+        <Settings className={cn(ITEMS_STYLE.icon, 'size-[22px]')} />
       </Button>
     </header>
   )

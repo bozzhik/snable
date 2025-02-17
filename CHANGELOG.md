@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.2
+
+### Patch Changes
+
+- 02b36c7: enhance `Button` with `wouter` routing
+- 0706705: configure `routing` using `wouter`
+
 ## 0.1.1
 
 ### Patch Changes

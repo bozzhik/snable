@@ -1,9 +1,11 @@
 import {cn} from '@/lib/utils'
+import {Link} from 'wouter'
 
 type Props = {
   children: React.ReactNode
   variant?: 'primary' | 'secondary'
-  to?: string
+  to?: string // routing
+  href?: string // external links
   className?: string
   onClick?: () => void
 }
@@ -14,12 +16,20 @@ const BUTTON_STYLES = {
   secondary: 'bg-control text-white hover:bg-control/70',
 }
 
-export default function Button({children, variant = 'secondary', to, className, onClick}: Props) {
+export default function Button({children, variant = 'secondary', to, href, className, onClick}: Props) {
   const buttonStyles = cn(BUTTON_STYLES.DEFAULT, BUTTON_STYLES[variant])
 
   if (to) {
     return (
-      <a href={to} target="_blank" className={cn(buttonStyles, className)} onClick={onClick}>
+      <Link href={to} className={cn(buttonStyles, className)} onClick={onClick}>
+        {children}
+      </Link>
+    )
+  }
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" className={cn(buttonStyles, className)} onClick={onClick}>
         {children}
       </a>
     )
