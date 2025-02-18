@@ -8,6 +8,7 @@ import {ArrowUpRight} from 'lucide-react'
 
 import Unit from '~/UI/Unit'
 import {SPAN} from '~/UI/Typography'
+import ColorCell from '~/UI/ColorCell'
 import Button from '~/UI/Button'
 
 export default function ColorsUnit({data}: {data: ColorData[] | undefined}) {
@@ -31,9 +32,9 @@ export default function ColorsUnit({data}: {data: ColorData[] | undefined}) {
     <Unit token="colors">
       <div className="flex gap-2">
         {data.slice(0, 5).map(({color, isContrasted}) => (
-          <div className={cn('relative group', 'grid place-items-center w-full h-14 rounded-lg', !isContrasted && 'ring ring-gray/35')} style={{backgroundColor: color}} onClick={() => handleCopy(color)} onMouseEnter={() => setTooltip(color)} onMouseLeave={() => setTooltip('')} key={color}>
+          <ColorCell className="relative group" color={color} isContrasted={isContrasted} onClick={() => handleCopy(color)} onMouseEnter={() => setTooltip(color)} onMouseLeave={() => setTooltip('')} key={color}>
             <SPAN className={cn('absolute -top-[35px] left-1/2 transform -translate-x-1/2', 'px-1.5 py-1 text-background bg-white rounded-md', 'opacity-0 group-hover:opacity-100 transition-opacity')}>{tooltip || color}</SPAN>
-          </div>
+          </ColorCell>
         ))}
 
         <Button to={ROUTES.colors} className={cn('px-1', 'grid place-items-center group hover:bg-unit')}>
