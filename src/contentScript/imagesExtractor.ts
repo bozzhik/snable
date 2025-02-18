@@ -1,5 +1,7 @@
+export type ImageType = 'img' | 'bg-image' | 'icon'
+
 export type ImageData = {
-  type: 'img' | 'bg-image' | 'icon'
+  type: ImageType
   src: string
 }
 
@@ -13,6 +15,7 @@ export function imagesExtractor(): ImageData[] {
   const imgElements = document.querySelectorAll('img')
   imgElements.forEach((el) => {
     const src = el.src
+
     if (src && !images.some((image) => image.src === src)) {
       images.push({type: 'img', src})
     }
@@ -22,19 +25,32 @@ export function imagesExtractor(): ImageData[] {
   elementsWithBgImage.forEach((el) => {
     const style = window.getComputedStyle(el)
     const bgImage = style.backgroundImage
+
     if (bgImage && bgImage !== 'none') {
       const match = bgImage.match(/url\((['"]?)(.*?)\1\)/)
+
       if (match && match[2] && !images.some((image) => image.src === match[2])) {
         images.push({type: 'bg-image', src: match[2]})
       }
     }
   })
 
-  const iconElements = document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"], link[rel="icon shortcut"], img[src*="favicon"]')
+  const iconElements = document.querySelectorAll('img[src$=".svg"], img[src$=".ico"]')
   iconElements.forEach((el) => {
-    const href = el.getAttribute('href')
-    if (href && (isSvgImage(href) || href.endsWith('.ico')) && !images.some((image) => image.src === href)) {
-      images.push({type: 'icon', src: href})
+    const src = (el as HTMLImageElement).src
+
+    if (src && !images.some((image) => image.src === src)) {
+      images.push({type: 'icon', src})
+    }
+  })
+
+  const inlineSvgElements = document.querySelectorAll('svg')
+  inlineSvgElements.forEach((el) => {
+    const svgString = new XMLSerializer().serializeToString(el)
+    const dataUri = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString)
+
+    if (!images.some((image) => image.src === dataUri)) {
+      images.push({type: 'icon', src: dataUri})
     }
   })
 
