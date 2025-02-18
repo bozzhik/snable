@@ -31,13 +31,46 @@ export function colorsExtractor(): ColorData[] {
 function convertToHex(color: string): string | null {
   if (!color || color === 'transparent' || color === 'rgba(0, 0, 0, 0)') return null
 
-  if (color.startsWith('#')) return color
+  if (color.startsWith('#')) {
+    if (color.length === 4) {
+      return (
+        '#' +
+        color
+          .slice(1)
+          .split('')
+          .map((ch) => ch + ch)
+          .join('')
+          .toLowerCase()
+      )
+    }
+    return color.toLowerCase()
+  }
 
   const ctx = document.createElement('canvas').getContext('2d')
   if (!ctx) return null
-
   ctx.fillStyle = color
-  return ctx.fillStyle
+  let computed = ctx.fillStyle
+
+  if (!computed.startsWith('#')) {
+    const match = computed.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([0-9.]+))?\)/)
+    if (match) {
+      const r = parseInt(match[1]).toString(16).padStart(2, '0')
+      const g = parseInt(match[2]).toString(16).padStart(2, '0')
+      const b = parseInt(match[3]).toString(16).padStart(2, '0')
+      let hex = `#${r}${g}${b}`
+
+      if (match[4] !== undefined) {
+        const a = Math.round(parseFloat(match[4]) * 255)
+          .toString(16)
+          .padStart(2, '0')
+        hex = `#${r}${g}${b}${a}`
+      }
+      computed = hex
+    } else {
+      return null
+    }
+  }
+  return computed
 }
 
 function getLuminance(color: string): number {

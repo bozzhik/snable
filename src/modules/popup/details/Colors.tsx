@@ -1,10 +1,11 @@
 import type {ColorData} from '_scripts/colorsExtractor'
+
 import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
-import ColorsUnit from '~~popup/details/ColorsUnit'
+import Palette from '~~popup/colors/Palette'
 
-type ColorsResponse = {
+export type ColorsResponse = {
   colors: ColorData[]
 }
 
@@ -23,7 +24,7 @@ export function Colors() {
 
   return (
     <Layout className="space-y-2.5">
-      <ColorsUnit data={colorsData?.colors} />
+      <Palette data={colorsData} />
     </Layout>
   )
 }
