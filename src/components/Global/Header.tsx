@@ -31,7 +31,7 @@ export default function Header() {
   }
 
   return (
-    <header className={cn(BOX_STYLES, 'py-3 flex justify-between border-b-3 border-control')}>
+    <header className={cn(BOX_STYLES, 'fixed w-full', 'py-3 flex justify-between bg-background border-b-3 border-control')}>
       <div className="flex gap-1 items-center">
         <div className={cn(ITEMS_STYLE.box, 'p-2 group')}>
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>

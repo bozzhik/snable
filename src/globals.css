@@ -5,3 +5,7 @@ body {
   @apply min-w-[28rem] bg-background text-white;
   @apply text-base font-sans;
 }
+
+*::-webkit-scrollbar {
+  width: 0px;
+}
