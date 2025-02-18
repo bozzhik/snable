@@ -6,7 +6,7 @@ export function useCopy(timeout = 1500) {
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text)
-      setTooltip('Copied!')
+      setTooltip('Copied')
       setTimeout(() => setTooltip(''), timeout)
     } catch (err) {
       setTooltip('Failed to copy!')

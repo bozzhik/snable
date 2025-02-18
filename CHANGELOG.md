@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.1.3
+
+### Patch Changes
+
+- 3fc58c2: make `Controls` colors block
+- cf354d4: init `useCopy` custom hook
+- 22bf9f0: disable `scrollbar` in extension interface
+- 159f4f6: init `ColorCell` UI component
+- 040cf5e: init `Palette` colors block
+- 88ec5b9: init `/colors` popup sub-page
+
 ## 0.1.2
 
 ### Patch Changes

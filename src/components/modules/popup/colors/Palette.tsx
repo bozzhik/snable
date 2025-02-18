@@ -1,17 +1,32 @@
 import type {ColorsResponse} from '_modules/popup/details/Colors'
 import type {ColorData} from '_scripts/colorsExtractor'
-import {Copy, Check} from 'lucide-react'
+import type {ColorMode} from '~~popup/colors/Controls'
 
 import {useCopy} from '_hooks/useCopy'
 import {cn} from '@/lib/utils'
+import {hexToHsl, hexToRgb} from '@/utils/convertColors'
 
 import ColorCell from '~/UI/ColorCell'
 import {H3} from '~/UI/Typography'
+import {Copy, Check} from 'lucide-react'
 
-export default function Palette({data}: {data: ColorsResponse | undefined}) {
+export default function Palette({data, format}: {data: ColorsResponse | undefined; format: ColorMode}) {
+  const getColorMode = (color: string): string => {
+    switch (format) {
+      case 'hex':
+        return color
+      case 'rgb':
+        return hexToRgb(color)
+      case 'hsl':
+        return hexToHsl(color)
+      default:
+        return color
+    }
+  }
+
   return (
     <section data-section="palette-colors" className="space-y-2">
-      {data?.colors.map(({color, isContrasted}) => <PaletteItem color={color} isContrasted={isContrasted} key={color} />)}
+      {data?.colors.map(({color, isContrasted}) => <PaletteItem key={color} color={getColorMode(color)} isContrasted={isContrasted} />)}
     </section>
   )
 }
@@ -24,7 +39,7 @@ function PaletteItem({color, isContrasted}: ColorData) {
 
   return (
     <ColorCell className={cn('h-auto group', 'py-3.5 flex justify-between px-4', !isContrasted && 'ring ring-gray/20')} color={color} isContrasted={isContrasted} onClick={() => copyToClipboard(color)}>
-      <H3 className={contrastedStyles}>{tooltip || color}</H3>
+      <H3 className={cn(contrastedStyles, tooltip && 'uppercase')}>{tooltip || color}</H3>
 
       {!tooltip ? <Copy className={cn(iconStyles, contrastedStyles)} strokeWidth={1.7} /> : <Check className={cn(iconStyles, contrastedStyles)} strokeWidth={1.7} />}
     </ColorCell>

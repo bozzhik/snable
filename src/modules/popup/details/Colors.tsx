@@ -1,9 +1,9 @@
 import type {ColorData} from '_scripts/colorsExtractor'
-
 import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
 import Palette from '~~popup/colors/Palette'
+import Controls, {type ColorMode} from '~~popup/colors/Controls'
 
 export type ColorsResponse = {
   colors: ColorData[]
@@ -11,6 +11,7 @@ export type ColorsResponse = {
 
 export function Colors() {
   const [colorsData, setColorsData] = useState<ColorsResponse>()
+  const [colorFormat, setColorFormat] = useState<ColorMode>('hex')
 
   useEffect(() => {
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
@@ -22,9 +23,14 @@ export function Colors() {
     })
   }, [])
 
+  const handleFormatChange = (format: ColorMode) => {
+    setColorFormat(format)
+  }
+
   return (
-    <Layout className="space-y-2.5">
-      <Palette data={colorsData} />
+    <Layout className="space-y-3.5">
+      <Controls selectedMode={colorFormat} onModeChange={handleFormatChange} />
+      <Palette data={colorsData} format={colorFormat} />
     </Layout>
   )
 }
