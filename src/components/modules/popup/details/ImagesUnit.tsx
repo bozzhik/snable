@@ -1,7 +1,9 @@
 import type {ImageData} from '_scripts/imagesExtractor'
+import {ROUTES} from '@/lib/routes'
 import {cn} from '@/lib/utils'
 
 import Unit from '~/UI/Unit'
+import {ExpandButton} from '~/UI/Button'
 
 export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
   if (!data || data.length === 0) {
@@ -18,6 +20,8 @@ export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
             <img src={src} className="object-cover size-full bg-control group-hover:scale-[1.05] duration-300" />
           </a>
         ))}
+
+      <ExpandButton to={ROUTES.images} />
     </Unit>
   )
 }
