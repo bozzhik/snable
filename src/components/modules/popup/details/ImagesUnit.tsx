@@ -3,6 +3,7 @@ import {ROUTES} from '@/lib/routes'
 import {cn} from '@/lib/utils'
 
 import Unit from '~/UI/Unit'
+import ImageCell from '~/UI/ImageCell'
 import {ExpandButton} from '~/UI/Button'
 
 export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
@@ -11,14 +12,12 @@ export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
   }
 
   return (
-    <Unit token="images" className={cn('flex gap-2')}>
+    <Unit token="images" className={cn('flex gap-[7px]')}>
       {data
         .filter(({type}) => type === 'img')
         .slice(0, 4)
-        .map(({src}) => (
-          <a href={src} className={cn('w-full h-20 rounded-lg', 'grid place-items-center overflow-hidden group')} target="_blank" key={src}>
-            <img src={src} className="object-cover size-full bg-control group-hover:scale-[1.05] duration-300" />
-          </a>
+        .map(({src, type}) => (
+          <ImageCell source={src} type={type} />
         ))}
 
       <ExpandButton to={ROUTES.images} />
