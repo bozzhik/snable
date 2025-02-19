@@ -14,12 +14,18 @@ type Props = {
   onModeChange: (mode: ColorMode) => void
 }
 
+export function ControlsBack({className}: {className?: string}) {
+  return (
+    <Button to={ROUTES.home} className={cn('p-2', 'grid place-items-center group hover:bg-unit', className)}>
+      <ArrowUpLeft className={cn(ITEMS_STYLE.icon, 'size-7')} strokeWidth={1.25} />
+    </Button>
+  )
+}
+
 export default function Controls({selectedMode, onModeChange}: Props) {
   return (
     <section data-section="controls-colors" className="flex justify-between gap-3">
-      <Button to={ROUTES.home} className={cn('p-2', 'grid place-items-center group hover:bg-unit')}>
-        <ArrowUpLeft className={cn(ITEMS_STYLE.icon, 'size-7')} strokeWidth={1.25} />
-      </Button>
+      <ControlsBack />
 
       <div className="flex gap-1.5 bg-unit w-full p-1.5 rounded-lg">
         {modes.map((mode) => (

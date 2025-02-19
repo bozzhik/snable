@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.1.4
+
+### Patch Changes
+
+- b68cdfc: init `imagesExtractor` and `ImagesUnit` for its data
+- 5b3ba4b: init `Gallery` images block
+- 411e427: init `ExpandButton` UI sub-component (Button)
+- 62ebe72: init `ImageCell` UI component
+- 050170f: init `/images` popup sub-page
+
 ## 0.1.3
 
 ### Patch Changes

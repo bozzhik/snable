@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
 import Gallery from '~~popup/images/Gallery'
+import {ControlsBack} from '~~popup/colors/Controls'
 
 export type ImagesResponse = {
   images: ImageData[]
@@ -23,6 +24,8 @@ export function Images() {
 
   return (
     <Layout className="space-y-3.5">
+      <ControlsBack className="w-full" />
+
       <Gallery data={imagesData} />
     </Layout>
   )
