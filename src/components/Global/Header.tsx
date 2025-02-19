@@ -31,15 +31,15 @@ export default function Header() {
   }
 
   return (
-    <header className={cn(BOX_STYLES, 'fixed w-full', 'py-3 flex justify-between bg-background border-b-3 border-control')}>
-      <div className="flex gap-1 items-center">
+    <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-3 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
+      <div className="flex items-center gap-1">
         <div className={cn(ITEMS_STYLE.box, 'p-2 group')}>
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
         </div>
 
         <X className="size-4 text-gray" />
 
-        <div className="flex gap-3 items-center">
+        <div className="flex items-center gap-3">
           <div className={cn(ITEMS_STYLE.box, 'bg-transparent overflow-hidden')}>
             {tabData.favicon ? (
               <img src={tabData.favicon} className="size-full" />

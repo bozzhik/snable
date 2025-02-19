@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.1.5
+
+### Patch Changes
+
+- 71ab634: upgrade `Header` Global component
+
 ## 0.1.4
 
 ### Patch Changes
