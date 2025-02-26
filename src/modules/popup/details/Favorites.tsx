@@ -31,7 +31,7 @@ export function Favorites() {
     <Layout className="space-y-2.5">
       <ControlsBack />
 
-      {favorites.length > 0 ? (
+      {favoritesManager.hasFavorites() ? (
         favorites.map((tab) => (
           <div className={cn(unitStyles, 'flex justify-between')} key={tab.url}>
             <TabData view="favorites" tab={tab} onRemove={() => handleRemoveFavorite(tab.url)} />

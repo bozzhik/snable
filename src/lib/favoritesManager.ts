@@ -11,6 +11,10 @@ export const favoritesManager = {
     }
   },
 
+  hasFavorites(): boolean {
+    return this.getFavorites().length > 0
+  },
+
   isFavorite(url: string): boolean {
     return this.getFavorites().some((fav) => fav.url === url)
   },

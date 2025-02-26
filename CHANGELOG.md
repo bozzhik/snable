@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.1.7
+
+### Patch Changes
+
+- 72ddeb6: add `hasFavorites` method for `favouritesManager`
+- 4c9d86c: add `onRemove` prop for `TabData` in `favorites` view
+- 427ddb4: add `view` prop for `TabData` Header sub-component
+- 048502e: upgrade `ExpandButton` UI sub-component
+- 4a05cbf: init `/favorites` popup page
+- f130a13: init `Dropdown` UI component based on `shadcn/ui`
+- 57390e6: decompose `Header` into `Logo` and `TabInfo` components
+
 ## 0.1.6
 
 ### Patch Changes
@@ -66,7 +78,6 @@
 
 ### Patch Changes
 
-- 2e08f62: finalize `Header` Global component
 - ec173f9: pass `GET_TAB_INFO` data into `Header` Global component
 - d9eb5ec: init `getTabInfo` background worker for parsing `activeTab` data
 

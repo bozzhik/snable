@@ -2,6 +2,7 @@ import {HEADER_MENU, MODULE_STYLE} from '@/lib/constants'
 
 import {useState} from 'react'
 import {cn} from '@/lib/utils'
+import {favoritesManager} from '@/lib/favoritesManager'
 
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '~/UI/Dropdown'
 import {Link} from 'wouter'
@@ -18,7 +19,7 @@ export default function Logo() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
-        {HEADER_MENU.map(({label, to, href}, index) => (
+        {HEADER_MENU.filter((item) => item.label !== 'Favorites' || favoritesManager.hasFavorites()).map(({label, to, href}, index) => (
           <DropdownMenuItem key={index} className="cursor-pointer" asChild>
             {to ? (
               <Link href={to}>{label}</Link>
