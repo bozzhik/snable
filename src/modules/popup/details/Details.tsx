@@ -2,10 +2,11 @@ import type {Units} from '_scripts/index'
 import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
-import FontsUnit from '~~popup/FontsUnit'
-import ColorsUnit from '~~popup/ColorsUnit'
+import FontsUnit from '~~popup/details/FontsUnit'
+import ColorsUnit from '~~popup/details/ColorsUnit'
+import ImagesUnit from '~~popup/details/ImagesUnit'
 
-export function Popup() {
+export function Details() {
   const [units, setUnits] = useState<Units>()
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export function Popup() {
     <Layout className="space-y-2.5">
       <FontsUnit data={units?.fonts} />
       <ColorsUnit data={units?.colors} />
+      <ImagesUnit data={units?.images} />
     </Layout>
   )
 }

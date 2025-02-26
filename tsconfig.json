@@ -19,10 +19,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "_hooks/*": ["./src/hooks/*"],
       "_scripts/*": ["./src/contentScript/*"],
       "_bg/*": ["./src/background/*"],
       "~/*": ["./src/components/*"],
       "~~popup/*": ["./src/components/modules/popup/*"],
+      "_modules/*": ["./src/modules/*"],
       "$/*": ["./src/assets/*"]
     }
   },
