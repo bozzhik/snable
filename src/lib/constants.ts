@@ -1,3 +1,18 @@
+export const HEADER_MENU = [
+  {
+    label: 'Favorites',
+    to: '',
+  },
+  {
+    label: 'About',
+    href: 'https://snable.website',
+  },
+  {
+    label: 'Rate us',
+    href: 'https://snable.website/reviews',
+  },
+]
+
 export const FONT_WEIGHTS: Record<string, string> = {
   '100': 'thin',
   '200': 'ultralight',

@@ -7,7 +7,7 @@ import {favoritesManager} from '@/lib/favoritesManager'
 import {MODULE_STYLE} from '@/lib/constants'
 
 import Logo from '~/Global/Header/Logo'
-import TabData from '~/Global/Header/TabInfo'
+import TabData from '~/Global/Header/TabData'
 import {X, Star} from 'lucide-react'
 import Button from '~/UI/Button'
 
