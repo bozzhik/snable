@@ -24,7 +24,7 @@ export function Images() {
 
   return (
     <Layout className="space-y-3.5">
-      <ControlsBack className="w-full" />
+      <ControlsBack />
 
       <Gallery data={imagesData} />
     </Layout>

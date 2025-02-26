@@ -25,7 +25,7 @@ export default function Button({children, variant = 'secondary', to, href, title
 
   if (to) {
     return (
-      <Link href={to} className={cn(buttonStyles, className)} onClick={onClick}>
+      <Link href={to} className={cn(buttonStyles, className)} onClick={onClick} data-link="wouter-link">
         {children}
       </Link>
     )
@@ -33,7 +33,7 @@ export default function Button({children, variant = 'secondary', to, href, title
 
   if (href) {
     return (
-      <a href={href} target="_blank" className={cn(buttonStyles, className)} onClick={onClick}>
+      <a href={href} target="_blank" className={cn(buttonStyles, className)} onClick={onClick} data-link="html-link">
         {children}
       </a>
     )
@@ -46,9 +46,9 @@ export default function Button({children, variant = 'secondary', to, href, title
   )
 }
 
-export function ExpandButton({to}: {to: string}) {
+export function ExpandButton({to, href, className}: {to?: string; href?: string; className?: string}) {
   return (
-    <Button to={to} className={cn('px-1', 'grid place-items-center group hover:bg-unit')}>
+    <Button to={to} href={href} className={cn('px-1', 'grid place-items-center group hover:bg-unit', className)}>
       <ArrowUpRight className={cn(MODULE_STYLE.icon, 'size-10')} strokeWidth={1.25} />
     </Button>
   )

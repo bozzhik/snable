@@ -16,7 +16,7 @@ type Props = {
 
 export function ControlsBack({className}: {className?: string}) {
   return (
-    <Button to={ROUTES.home} className={cn('p-2', 'grid place-items-center group hover:bg-unit', className)}>
+    <Button to={ROUTES.home} className={cn('w-full p-2', 'grid place-items-center group hover:bg-unit', className)}>
       <ArrowUpLeft className={cn(MODULE_STYLE.icon, 'size-7')} strokeWidth={1.25} />
     </Button>
   )
@@ -25,7 +25,7 @@ export function ControlsBack({className}: {className?: string}) {
 export default function Controls({selectedMode, onModeChange}: Props) {
   return (
     <section data-section="controls-colors" className="flex justify-between gap-3">
-      <ControlsBack />
+      <ControlsBack className="w-fit" />
 
       <div className="flex gap-1.5 bg-unit w-full p-1.5 rounded-lg">
         {modes.map((mode) => (
