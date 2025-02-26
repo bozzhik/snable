@@ -1,5 +1,5 @@
 import {ArrowUpRight} from 'lucide-react'
-import {ITEMS_STYLE} from '~/Global/Header'
+import {MODULE_STYLE} from '@/lib/constants'
 
 import {cn} from '@/lib/utils'
 import {Link} from 'wouter'
@@ -49,7 +49,7 @@ export default function Button({children, variant = 'secondary', to, href, title
 export function ExpandButton({to}: {to: string}) {
   return (
     <Button to={to} className={cn('px-1', 'grid place-items-center group hover:bg-unit')}>
-      <ArrowUpRight className={cn(ITEMS_STYLE.icon, 'size-10')} strokeWidth={1.25} />
+      <ArrowUpRight className={cn(MODULE_STYLE.icon, 'size-10')} strokeWidth={1.25} />
     </Button>
   )
 }

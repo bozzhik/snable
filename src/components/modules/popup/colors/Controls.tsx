@@ -1,5 +1,5 @@
 import {ROUTES} from '@/lib/routes'
-import {ITEMS_STYLE} from '~/Global/Header'
+import {MODULE_STYLE} from '@/lib/constants'
 
 import {cn} from '@/lib/utils'
 
@@ -17,7 +17,7 @@ type Props = {
 export function ControlsBack({className}: {className?: string}) {
   return (
     <Button to={ROUTES.home} className={cn('p-2', 'grid place-items-center group hover:bg-unit', className)}>
-      <ArrowUpLeft className={cn(ITEMS_STYLE.icon, 'size-7')} strokeWidth={1.25} />
+      <ArrowUpLeft className={cn(MODULE_STYLE.icon, 'size-7')} strokeWidth={1.25} />
     </Button>
   )
 }
