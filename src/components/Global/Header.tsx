@@ -1,9 +1,10 @@
 import {type TabInfo} from '_bg/getTabData'
 import {BOX_STYLES} from '~/Global/Container'
-import {favoritesManager} from '@/lib/favoritesManager'
 
 import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
+import {favoritesManager} from '@/lib/favoritesManager'
+import {getDomain} from '@/utils/getDomain'
 
 import {X, Ban, Star} from 'lucide-react'
 import Button from '~/UI/Button'
@@ -34,14 +35,6 @@ export default function Header() {
         favicon: tabData.favicon,
       }),
     )
-
-  function getDomain(url: string): string {
-    try {
-      return new URL(url).hostname
-    } catch {
-      return url
-    }
-  }
 
   return (
     <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-3 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
