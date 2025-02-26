@@ -37,7 +37,7 @@ export default function Header() {
       <div className="flex items-center gap-1">
         <Logo />
         <X className="size-4 text-gray" />
-        <TabData tab={tabData} />
+        <TabData view="header" tab={tabData} />
       </div>
 
       <Button onClick={handleFavoriteClick} className={cn('px-[11px]', 'grid place-items-center group')} title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
