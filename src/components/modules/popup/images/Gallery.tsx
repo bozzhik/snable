@@ -5,7 +5,7 @@ import ImageCell from '~/UI/ImageCell'
 export default function Gallery({data}: {data: ImagesResponse | undefined}) {
   return (
     <section data-section="gallery-images" className="grid grid-cols-2 gap-2">
-      {data?.images?.map(({src, type}) => <ImageCell source={src} className="h-36 bg-control/40" type={type} />)}
+      {data?.images?.map(({src, type}, idx) => <ImageCell source={src} className="h-36 bg-control/40" type={type} key={idx} />)}
     </section>
   )
 }

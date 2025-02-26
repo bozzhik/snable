@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.6
+
+### Patch Changes
+
+- a1d1e7d: init `favouritesManager` file for `Header` Global component
+- de0a05a: init `favorites` button in `Header` Global component
+
 ## 0.1.5
 
 ### Patch Changes
