@@ -1,7 +1,13 @@
+import {unitStyles} from '~/UI/Unit'
+
 import {useEffect, useState} from 'react'
-import {favoritesManager, type Favorite} from '@/lib/favoritesManager' // Adjust the path if needed
+import {favoritesManager, type Favorite} from '@/lib/favoritesManager'
+import {cn} from '@/lib/utils'
 
 import Layout from '~/Global/Layout'
+import TabData from '~/Global/Header/TabData'
+import {ExpandButton} from '~/UI/Button'
+import {ControlsBack} from '~~popup/colors/Controls'
 
 export function Favorites() {
   const [favorites, setFavorites] = useState<Favorite[]>([])
@@ -18,13 +24,14 @@ export function Favorites() {
 
   return (
     <Layout className="space-y-2.5">
+      <ControlsBack />
+
       {favorites.length > 0 ? (
-        favorites.map(({url, title, favicon}) => (
-          <div key={url} className="flex items-center gap-2 p-1 rounded bg-unit">
-            {favicon && <img src={favicon} alt={title} className="size-10" />}
-            <a href={url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline">
-              {title}
-            </a>
+        favorites.map((tab) => (
+          <div className={cn(unitStyles, 'flex justify-between')} key={tab.url}>
+            <TabData view="favorites" tab={tab} />
+
+            <ExpandButton href={tab.url} className="py-1" />
           </div>
         ))
       ) : (
