@@ -1,4 +1,4 @@
-import {type TabInfo} from '_bg/getTabData'
+import type {TabInfo} from '_bg/getTabData'
 
 export type Favorite = TabInfo
 
