@@ -4,7 +4,7 @@ import {BOX_STYLES} from '~/Global/Container'
 import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
 
-import {X, Settings, Ban} from 'lucide-react'
+import {X, Ban, Star} from 'lucide-react'
 import Button from '~/UI/Button'
 import {H3, SPAN} from '~/UI/Typography'
 
@@ -42,7 +42,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <div className={cn(ITEMS_STYLE.box, 'bg-transparent overflow-hidden')}>
             {tabData.favicon ? (
-              <img src={tabData.favicon} className="size-full" />
+              <img src={tabData.favicon} className="size-full" alt="website favicon" />
             ) : (
               <div className={cn(ITEMS_STYLE.box, 'bg-control p-2 group')}>
                 <Ban className={cn(ITEMS_STYLE.icon, 'size-6')} />
@@ -57,8 +57,8 @@ export default function Header() {
         </div>
       </div>
 
-      <Button href="https://snable.website" className={cn('px-[11px]', 'grid place-items-center group')}>
-        <Settings className={cn(ITEMS_STYLE.icon, 'size-[22px]')} />
+      <Button className={cn('px-[11px]', 'grid place-items-center group')} title="Add to favorites">
+        <Star className={cn(ITEMS_STYLE.icon, 'size-[22px]')} />
       </Button>
     </header>
   )

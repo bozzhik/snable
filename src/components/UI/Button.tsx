@@ -9,6 +9,7 @@ type Props = {
   variant?: 'primary' | 'secondary'
   to?: string // routing
   href?: string // external links
+  title?: string
   className?: string
   onClick?: () => void
 }
@@ -19,7 +20,7 @@ const BUTTON_STYLES = {
   secondary: 'bg-control text-white hover:bg-control/70',
 }
 
-export default function Button({children, variant = 'secondary', to, href, className, onClick}: Props) {
+export default function Button({children, variant = 'secondary', to, href, title, className, onClick}: Props) {
   const buttonStyles = cn(BUTTON_STYLES.DEFAULT, BUTTON_STYLES[variant])
 
   if (to) {
@@ -39,7 +40,7 @@ export default function Button({children, variant = 'secondary', to, href, class
   }
 
   return (
-    <button className={cn(buttonStyles, className)} onClick={onClick}>
+    <button className={cn(buttonStyles, className)} title={title} onClick={onClick}>
       {children}
     </button>
   )
