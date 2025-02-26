@@ -1,7 +1,9 @@
+import {ROUTES} from '@/lib/routes'
+
 export const HEADER_MENU = [
   {
     label: 'Favorites',
-    to: '',
+    to: ROUTES.favorites,
   },
   {
     label: 'About',

@@ -8,6 +8,7 @@ import {ROUTES} from '@/lib/routes'
 import {Details} from '_modules/popup/details/Details'
 import {Colors} from '_modules/popup/details/Colors'
 import {Images} from '_modules/popup/details/Images'
+import {Favorites} from '_modules/popup/details/Favorites'
 
 import '@/globals.css'
 
@@ -17,6 +18,8 @@ ReactDOM.createRoot(document.getElementById('module') as HTMLElement).render(
       <Route path={ROUTES.home} component={Details} />
       <Route path={ROUTES.colors} component={Colors} />
       <Route path={ROUTES.images} component={Images} />
+
+      <Route path={ROUTES.favorites} component={Favorites} />
     </Router>
   </React.StrictMode>,
 )
