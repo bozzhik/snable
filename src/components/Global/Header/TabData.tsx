@@ -5,21 +5,27 @@ import {cn} from '@/lib/utils'
 import {getDomain} from '@/utils/getDomain'
 
 import {H3, SPAN} from '~/UI/Typography'
-import {Ban} from 'lucide-react'
+import {Ban, X} from 'lucide-react'
 
-export default function TabData({tab, view}: {tab: TabInfo; view: 'header' | 'favorites'}) {
+export default function TabData({tab, view, onRemove}: {tab: TabInfo; view: 'header' | 'favorites'; onRemove?: () => void}) {
   const {favicon, title, url} = tab
 
   const headerTab = view === 'header'
 
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5')}>
-      <div className={cn(MODULE_STYLE.box, 'bg-transparent overflow-hidden', !headerTab && 'size-[48px]')}>
+      <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden', !headerTab && 'size-[48px] group')}>
         {favicon ? (
-          <img src={favicon} className="size-full" alt="website favicon" />
+          <img src={favicon} className={cn('size-full', 'group-hover:opacity-15 duration-300')} alt="website favicon" />
         ) : (
-          <div className={cn(MODULE_STYLE.box, 'bg-control p-2 group')}>
+          <div className={cn(MODULE_STYLE.box, 'bg-control p-2 group', 'group-hover:opacity-10 duration-300')}>
             <Ban className={cn(MODULE_STYLE.icon, 'size-6')} />
+          </div>
+        )}
+
+        {!headerTab && (
+          <div className={cn(MODULE_STYLE.box, 'absolute size-full bg-transparent opacity-0', 'group-hover:opacity-100 duration-300')} onClick={!headerTab && onRemove}>
+            <X className={cn(MODULE_STYLE.icon, 'size-8')} strokeWidth={1.7} />
           </div>
         )}
       </div>

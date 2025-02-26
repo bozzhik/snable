@@ -22,6 +22,11 @@ export function Favorites() {
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
+  const handleRemoveFavorite = (url: string) => {
+    favoritesManager.removeFavorite(url)
+    setFavorites(favoritesManager.getFavorites())
+  }
+
   return (
     <Layout className="space-y-2.5">
       <ControlsBack />
@@ -29,7 +34,7 @@ export function Favorites() {
       {favorites.length > 0 ? (
         favorites.map((tab) => (
           <div className={cn(unitStyles, 'flex justify-between')} key={tab.url}>
-            <TabData view="favorites" tab={tab} />
+            <TabData view="favorites" tab={tab} onRemove={() => handleRemoveFavorite(tab.url)} />
 
             <ExpandButton href={tab.url} className="py-1" />
           </div>
