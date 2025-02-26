@@ -3,9 +3,17 @@
 
 body {
   @apply min-w-[28rem] bg-background text-white;
-  @apply text-base font-sans;
+  @apply font-sans text-base;
 }
 
 *::-webkit-scrollbar {
   width: 0px;
+}
+
+button {
+  @apply outline-none;
+}
+
+[data-radix-popper-content-wrapper] {
+  @apply z-[999]! top-1! left-3.5! w-fit;
 }
