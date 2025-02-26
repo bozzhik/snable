@@ -1,5 +1,6 @@
 import {type TabInfo} from '_bg/getTabData'
 import {BOX_STYLES} from '~/Global/Container'
+import {favoritesManager} from '@/lib/favoritesManager'
 
 import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
@@ -15,12 +16,24 @@ export const ITEMS_STYLE = {
 
 export default function Header() {
   const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
+  const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
       setTabData(response)
+      setIsFavorite(favoritesManager.isFavorite(response.url))
     })
   }, [])
+
+  const handleFavoriteClick = () =>
+    tabData.url &&
+    setIsFavorite(
+      favoritesManager.toggleFavorite({
+        url: tabData.url,
+        title: tabData.title,
+        favicon: tabData.favicon,
+      }),
+    )
 
   function getDomain(url: string): string {
     try {
@@ -57,8 +70,8 @@ export default function Header() {
         </div>
       </div>
 
-      <Button className={cn('px-[11px]', 'grid place-items-center group')} title="Add to favorites">
-        <Star className={cn(ITEMS_STYLE.icon, 'size-[22px]')} />
+      <Button onClick={handleFavoriteClick} className={cn('px-[11px]', 'grid place-items-center group')} title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
+        <Star className={cn(ITEMS_STYLE.icon, 'size-[22px]', isFavorite && 'text-white')} fill={isFavorite ? 'currentColor' : 'none'} />
       </Button>
     </header>
   )
