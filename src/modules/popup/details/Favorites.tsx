@@ -8,6 +8,7 @@ import Layout from '~/Global/Layout'
 import TabData from '~/Global/Header/TabData'
 import {ExpandButton} from '~/UI/Button'
 import {ControlsBack} from '~~popup/colors/Controls'
+import NotFound from '~/UI/NotFound'
 
 export function Favorites() {
   const [favorites, setFavorites] = useState<Favorite[]>([])
@@ -40,7 +41,7 @@ export function Favorites() {
           </div>
         ))
       ) : (
-        <p>No favorites saved.</p>
+        <NotFound>No favorites saved</NotFound>
       )}
     </Layout>
   )

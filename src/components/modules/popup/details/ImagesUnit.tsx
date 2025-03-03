@@ -5,10 +5,15 @@ import {cn} from '@/lib/utils'
 import Unit from '~/UI/Unit'
 import ImageCell from '~/UI/ImageCell'
 import {ExpandButton} from '~/UI/Button'
+import NotFound from '~/UI/NotFound'
 
 export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
   if (!data || data.length === 0) {
-    return <Unit token="images">No images detected</Unit>
+    return (
+      <Unit token="images">
+        <NotFound>No images detected</NotFound>
+      </Unit>
+    )
   }
 
   return (
