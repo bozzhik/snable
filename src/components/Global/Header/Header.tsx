@@ -33,8 +33,8 @@ export default function Header() {
     )
 
   return (
-    <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-3 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
-      <div className="flex items-center gap-1">
+    <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
+      <div className="flex items-center gap-[3px]">
         <Logo />
         <X className="size-4 text-gray" />
         <TabData view="header" tab={tabData} />
