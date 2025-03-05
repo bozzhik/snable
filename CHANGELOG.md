@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.9
+
+### Patch Changes
+
+- 0b81cfa: integrate `Sonner` into `Header` Global component
+- 892a4ae: init `Sonner` UI component using `shadcn/ui`
+
 ## 0.1.8
 
 ### Patch Changes

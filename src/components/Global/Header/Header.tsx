@@ -4,11 +4,12 @@ import {HEADER_MENU, MODULE_STYLE} from '@/lib/constants'
 import {ROUTES} from '@/lib/routes'
 
 import {useEffect, useState} from 'react'
+import {useHashLocation} from 'wouter/use-hash-location'
 import {cn} from '@/lib/utils'
 import {favoritesManager} from '@/lib/favoritesManager'
 import {toast} from 'sonner'
 
-import {useRoute, Link} from 'wouter'
+import {Link} from 'wouter'
 import TabData from '~/Global/Header/TabData'
 import Button, {BUTTON_STYLES} from '~/UI/Button'
 import {X, Star, AlignJustify} from 'lucide-react'
@@ -19,7 +20,8 @@ export default function Header() {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isMenuActive, setIsMenuActive] = useState(false)
 
-  const [matchFavorites] = useRoute(ROUTES.favorites)
+  const [location, navigate] = useHashLocation()
+  const isNonDetailsPage = [ROUTES.favorites].includes(location)
 
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
@@ -39,7 +41,14 @@ export default function Header() {
       }),
     )
 
-    toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`)
+    toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`, {
+      ...(!isFavorite && {
+        action: {
+          label: 'View all',
+          onClick: () => navigate(ROUTES.favorites),
+        },
+      }),
+    })
   }
 
   return (
@@ -49,12 +58,12 @@ export default function Header() {
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
         </a>
 
-        <X className={cn('size-4 text-gray', matchFavorites && 'opacity-0')} />
-        <TabData view="header" tab={tabData} className={cn(matchFavorites && 'opacity-0')} />
+        <X className={cn('size-4 text-gray', isNonDetailsPage && 'opacity-0')} />
+        <TabData view="header" tab={tabData} className={cn(isNonDetailsPage && 'opacity-0')} />
       </div>
 
       <div className="flex items-center gap-[5px]">
-        <Button onClick={handleFavoriteClick} className={cn('px-2.5 py-2.5', 'grid place-items-center group', matchFavorites && 'opacity-0')} title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
+        <Button onClick={handleFavoriteClick} className={cn('px-2.5 py-2.5', 'grid place-items-center group', isNonDetailsPage && 'opacity-0')} title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}>
           <Star className={cn(MODULE_STYLE.icon, 'size-[22px]', isFavorite && 'text-white')} fill={isFavorite ? 'currentColor' : 'none'} strokeWidth={1.7} />
         </Button>
 

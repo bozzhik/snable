@@ -1,4 +1,5 @@
 import {Toaster as Sonner} from 'sonner'
+import {cn} from '@/lib/utils'
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
@@ -7,11 +8,15 @@ export const Toaster = ({...props}: ToasterProps) => {
     <Sonner
       theme={'dark'}
       className="toaster group"
+      position="bottom-center"
+      gap={8}
       toastOptions={{
         classNames: {
-          toast: 'group group-[.toaster]:p-0 toast flex justify-between group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg',
-          actionButton: 'group-[.toast]:bg-unit group-[.toast]:text-primary-foreground',
+          toast: cn('group toast', 'pl-3.5! pr-2.5! py-3!', 'bg-background! rounded-lg'),
+          title: cn('text-sm! font-normal!'),
+          actionButton: cn('bg-white! rounded-md', 'hover:bg-white/80! duration-200! transition-colors!'),
         },
+        duration: 20000,
       }}
       {...props}
     />
