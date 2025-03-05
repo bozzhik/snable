@@ -6,6 +6,7 @@ import {ROUTES} from '@/lib/routes'
 import {useEffect, useState} from 'react'
 import {cn} from '@/lib/utils'
 import {favoritesManager} from '@/lib/favoritesManager'
+import {toast} from 'sonner'
 
 import {useRoute, Link} from 'wouter'
 import TabData from '~/Global/Header/TabData'
@@ -27,8 +28,9 @@ export default function Header() {
     })
   }, [])
 
-  const handleFavoriteClick = () =>
-    tabData.url &&
+  function handleFavoriteClick() {
+    if (!tabData.url) return
+
     setIsFavorite(
       favoritesManager.toggleFavorite({
         url: tabData.url,
@@ -36,6 +38,9 @@ export default function Header() {
         favicon: tabData.favicon,
       }),
     )
+
+    toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`)
+  }
 
   return (
     <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
