@@ -16,14 +16,19 @@ export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
     )
   }
 
+  const imgItems = data.filter(({type}) => type === 'img')
+  const otherItems = data.filter(({type}) => type !== 'img')
+  const imagesData = [...imgItems]
+
+  if (imgItems.length < 4) {
+    imagesData.push(...otherItems.slice(0, 4 - imgItems.length))
+  }
+
   return (
     <Unit token="images" className={cn('flex gap-[7px]')}>
-      {data
-        .filter(({type}) => type === 'img')
-        .slice(0, 4)
-        .map(({src, type}) => (
-          <ImageCell source={src} type={type} />
-        ))}
+      {imagesData.slice(0, 4).map(({src, type}) => (
+        <ImageCell source={src} type={type} key={src} />
+      ))}
 
       <ExpandButton to={ROUTES.images} />
     </Unit>
