@@ -2,7 +2,7 @@
 @config "../tailwind.config.ts";
 
 body {
-  @apply min-w-[28rem] min-h-[15rem] bg-background text-white;
+  @apply min-w-[28rem] min-h-[15rem] bg-background text-white relative;
   @apply font-sans text-base;
 }
 
@@ -12,8 +12,4 @@ body {
 
 button {
   @apply outline-none;
-}
-
-[data-radix-popper-content-wrapper] {
-  @apply z-[999]! top-1! left-3.5! w-fit;
 }

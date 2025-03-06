@@ -14,7 +14,7 @@ type Props = {
   onClick?: () => void
 }
 
-const BUTTON_STYLES = {
+export const BUTTON_STYLES = {
   DEFAULT: 'w-fit flex px-4 py-2 rounded-lg duration-300',
   primary: 'bg-gray',
   secondary: 'bg-control text-white hover:bg-control/70',

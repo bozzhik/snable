@@ -7,13 +7,13 @@ import {getDomain} from '@/utils/getDomain'
 import {H3, SPAN} from '~/UI/Typography'
 import {Ban, X} from 'lucide-react'
 
-export default function TabData({tab, view, onRemove}: {tab: TabInfo; view: 'header' | 'favorites'; onRemove?: () => void}) {
+export default function TabData({tab, view, className, onRemove}: {tab: TabInfo; view: 'header' | 'favorites'; className?: string; onRemove?: () => void}) {
   const {favicon, title, url} = tab
 
   const headerTab = view === 'header'
 
   return (
-    <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5')}>
+    <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>
       <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden', !headerTab && 'size-[48px] group')}>
         {favicon ? (
           <img src={favicon} className={cn('size-full', 'group-hover:opacity-15 duration-300')} alt="website favicon" />
@@ -30,8 +30,8 @@ export default function TabData({tab, view, onRemove}: {tab: TabInfo; view: 'hea
         )}
       </div>
 
-      <div className="-space-y-0.5 mt-0.5">
-        {title && <H3 className={cn('text-white line-clamp-1', title.length > (headerTab ? 24 : 34) && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{title.slice(0, 28)}</H3>}
+      <div className="-space-y-1 mt-0.5">
+        {title && <H3 className={cn('text-white line-clamp-1', title.length > (headerTab ? 24 : 34) && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{headerTab ? title.slice(0, 24) : title}</H3>}
         {url && <SPAN>{getDomain(url)}</SPAN>}
       </div>
     </div>

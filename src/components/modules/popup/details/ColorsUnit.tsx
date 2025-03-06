@@ -8,12 +8,17 @@ import Unit from '~/UI/Unit'
 import {SPAN} from '~/UI/Typography'
 import ColorCell from '~/UI/ColorCell'
 import {ExpandButton} from '~/UI/Button'
+import NotFound from '~/UI/NotFound'
 
 export default function ColorsUnit({data}: {data: ColorData[] | undefined}) {
   const {tooltip, copyToClipboard, setTooltip} = useCopy(1500)
 
   if (!data || data.length === 0) {
-    return <Unit token="colors">No colors detected</Unit>
+    return (
+      <Unit token="colors">
+        <NotFound>No colors detected</NotFound>
+      </Unit>
+    )
   }
 
   return (

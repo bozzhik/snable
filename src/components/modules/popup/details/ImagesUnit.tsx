@@ -5,20 +5,30 @@ import {cn} from '@/lib/utils'
 import Unit from '~/UI/Unit'
 import ImageCell from '~/UI/ImageCell'
 import {ExpandButton} from '~/UI/Button'
+import NotFound from '~/UI/NotFound'
 
 export default function ImagesUnit({data}: {data: ImageData[] | undefined}) {
   if (!data || data.length === 0) {
-    return <Unit token="images">No images detected</Unit>
+    return (
+      <Unit token="images">
+        <NotFound>No images detected</NotFound>
+      </Unit>
+    )
+  }
+
+  const imgItems = data.filter(({type}) => type === 'img')
+  const otherItems = data.filter(({type}) => type !== 'img')
+  const imagesData = [...imgItems]
+
+  if (imgItems.length < 4) {
+    imagesData.push(...otherItems.slice(0, 4 - imgItems.length))
   }
 
   return (
     <Unit token="images" className={cn('flex gap-[7px]')}>
-      {data
-        .filter(({type}) => type === 'img')
-        .slice(0, 4)
-        .map(({src, type}) => (
-          <ImageCell source={src} type={type} />
-        ))}
+      {imagesData.slice(0, 4).map(({src, type}) => (
+        <ImageCell source={src} type={type} key={src} />
+      ))}
 
       <ExpandButton to={ROUTES.images} />
     </Unit>

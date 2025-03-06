@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.1.9
+
+### Patch Changes
+
+- 0b81cfa: integrate `Sonner` into `Header` Global component
+- 892a4ae: init `Sonner` UI component using `shadcn/ui`
+
+## 0.1.8
+
+### Patch Changes
+
+- 279f30c: refactor `ImagesUnit` details block
+- 29a14c2: remodel `Header` Global component
+- 6d4c3ec: init `NotFound` UI component
+- df22a41: edit `size` of `Container` Global component
+
 ## 0.1.7
 
 ### Patch Changes
@@ -118,7 +134,7 @@
 
 ### Patch Changes
 
-- Project configuration completed: CI/CD, Tailwind, Vite & TS setup
+- project configuration completed: CI/CD, Tailwind, Vite & TS setup
 
 ## 0.0.0
 

@@ -1,7 +1,7 @@
 {
   "name": "snable",
   "displayName": "Snable: UI Inspector & CSS Scanner",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "author": "bozzhik",
   "description": "Analyze any web page that catches your eye! Get a detailed overview of colors, fonts, and visual elements for design inspiration.",
   "type": "module",
@@ -28,6 +28,7 @@
     "lucide-react": "^0.475.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sonner": "^2.0.1",
     "wouter": "^3.6.0"
   },
   "devDependencies": {
