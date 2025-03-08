@@ -1,5 +1,8 @@
 import {ROUTES} from '@/lib/routes'
 
+export const IS_DEV = process.env.NODE_ENV == 'development'
+export const WEBSITE_PATH = IS_DEV ? 'http://localhost:3000' : 'https://snable.website'
+
 export const HEADER_MENU = [
   {
     label: 'Favorites',
