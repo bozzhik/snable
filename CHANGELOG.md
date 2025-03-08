@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.10
+
+### Patch Changes
+
+- 38fc462: integrate `/api/session` request for `activeTab` tracking
+- 0af03e2: update `PRIVACY_POLICY` due to `tracking` changes
+
 ## 0.1.9
 
 ### Patch Changes
