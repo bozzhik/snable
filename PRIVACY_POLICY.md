@@ -2,51 +2,56 @@
 
 ## Overview
 
-Snable is committed to protecting your privacy. This extension operates entirely within your browser and does not collect, store, or transmit any personal data or browsing information.
+Snable is committed to protecting your privacy. Our Chrome extension operates primarily within your browser and is designed with user privacy in mind. This Privacy Policy explains how data is collected, used, and secured when you use our extension.
 
 ## Data Collection and Usage
 
-- We DO NOT collect any personal information
-- We DO NOT track your browsing history
-- We DO NOT store any website data
-- We DO NOT transmit any information to external servers
-- We DO NOT use cookies or any tracking mechanisms
+### Local Data Processing
+
+When you manually activate the extension, it extracts visual information from the current webpage. This includes non-sensitive data such as the favicon, URL, and title of the active tab. All data is processed locally in your browser to provide immediate functionality.
+
+### Data Transmission for Advertising and Analysis
+
+Only when you actively launch the extension does it securely transmit the following non-sensitive data from the active tab to our servers:
+
+- **Favicon:** The icon associated with the active tab (if available)
+- **URL:** The URL of the active tab
+- **Title:** The title of the active tab
+
+This data is used exclusively for:
+
+- **Advertising purposes:** Displaying on our landing page to showcase websites where the extension is used.
+- **Audience analysis:** Understanding usage patterns to improve our services.
+
+**Note:** The extension does not collect any personal information, track your browsing history, or operate in the background. Data is only collected when you actively use the extension.
 
 ## How the Extension Works
 
-The extension operates by:
-
-1. Extracting data from the current webpage (e.g., colors, fonts, and other visual elements) only when activated
-2. Processing all data locally in your browser
-3. Displaying results immediately without storing any data
-4. Clearing all extracted data once you close the extension
+1. **User Activation:** The extension only activates when you choose to use it.
+2. **Local Data Extraction:** Upon activation, it extracts non-sensitive visual data (favicon, URL, title) from the active tab.
+3. **Local Processing:** The extracted data is processed locally in your browser.
+4. **Data Transmission:** Selected data is securely transmitted to our servers for advertising and analysis purposes.
+5. **No Background Collection:** The extension does not run in the background; data is only collected during active use.
 
 ## Permissions
 
-The extension requires only the "activeTab" permission to:
+The extension requires the "activeTab" permission to:
 
-- Access the current webpage's visual elements when you activate the extension
-- Perform data extraction and analysis of visible elements (e.g., colors, fonts)
-  This permission is used solely for the functionality of the extension.
+- Access visual elements of the current webpage when you activate the extension.
+- Extract and analyze non-sensitive data (favicon, URL, title) from the active tab.
 
-Additionally, the extension retrieves the following data from the active tab:
-
-- **Favicon**: The icon associated with the active tab (if available)
-- **URL**: The URL of the active tab
-- **Title**: The title of the active tab
-
-This data is used to display relevant information about the current webpage (e.g., the page's title and URL) and provide insights into the webpage's visual elements. This data is collected only when the extension is activated and is processed locally within your browser without being transmitted to any external servers.
+This permission is used solely to enable the functionality described above and does not allow background tracking.
 
 ## Data Security
 
-Since no data is collected or stored, there are no security risks associated with data handling.
+All transmitted data is handled with standard security measures to ensure safe transit and storage. Since only non-sensitive data from the active tab is collected during active use, the risk to your privacy is minimal.
 
 ## Updates
 
-We may update this privacy policy as we improve the extension. Any changes will be reflected here and in the extension documentation.
+We may update this Privacy Policy as we improve our extension. Any changes will be reflected here and in the extension documentation.
 
 ## Contact
 
-If you have questions about our privacy practices, please contact bozzhik@gmail.com
+If you have any questions about our privacy practices, please contact bozzhik@gmail.com
 
-Last updated: February 15, 2025
+Last updated: March 5, 2025

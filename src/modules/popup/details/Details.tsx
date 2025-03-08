@@ -24,6 +24,13 @@ export function Details() {
       <FontsUnit data={units?.fonts} />
       <ColorsUnit data={units?.colors} />
       <ImagesUnit data={units?.images} />
+
+      <p className="text-xs text-gray/50 text-center leading-none group">
+        we use data for advertising. check{' '}
+        <a className="text-gray/60 underline underline-offset-1 group-hover:no-underline" href="https://github.com/bozzhik/snable/blob/main/PRIVACY_POLICY.md" target="_blank">
+          privacy policy
+        </a>
+      </p>
     </Layout>
   )
 }
