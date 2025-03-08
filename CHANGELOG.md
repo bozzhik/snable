@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.11
+
+### Patch Changes
+
+- dfd5111: fix `colors` inside of `tailwind` config
+- 397b48b: refactor `ImageCell` UI component
+
 ## 0.1.10
 
 ### Patch Changes

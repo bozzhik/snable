@@ -38,7 +38,7 @@ function PaletteItem({color, isContrasted}: ColorData) {
   const iconStyles = 'size-5 opacity-0 group-hover:opacity-100 duration-200'
 
   return (
-    <ColorCell className={cn('h-auto group', 'py-3.5 flex justify-between px-4', !isContrasted && 'ring ring-gray/20')} color={color} isContrasted={isContrasted} onClick={() => copyToClipboard(color)}>
+    <ColorCell className={cn('h-auto group', 'py-3.5 flex justify-between px-4')} color={color} isContrasted={isContrasted} onClick={() => copyToClipboard(color)}>
       <H3 className={cn(contrastedStyles, tooltip && 'uppercase')}>{tooltip || color}</H3>
 
       {!tooltip ? <Copy className={cn(iconStyles, contrastedStyles)} strokeWidth={1.7} /> : <Check className={cn(iconStyles, contrastedStyles)} strokeWidth={1.7} />}

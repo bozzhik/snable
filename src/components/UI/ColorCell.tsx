@@ -1,5 +1,4 @@
 import {cn} from '@/lib/utils'
-import React from 'react'
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   color: string
@@ -10,7 +9,7 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
 
 export default function ColorCell({color, isContrasted, className, children, ...rest}: Props) {
   return (
-    <div {...rest} className={cn('grid place-items-center w-full h-14 rounded-lg', !isContrasted && 'ring ring-gray/35', className)} style={{backgroundColor: color}}>
+    <div {...rest} className={cn('grid place-items-center w-full h-14 rounded-lg', !isContrasted && 'ring ring-gray-dark', className)} style={{backgroundColor: color}}>
       {children}
     </div>
   )

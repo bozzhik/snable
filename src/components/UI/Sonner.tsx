@@ -16,7 +16,7 @@ export const Toaster = ({...props}: ToasterProps) => {
           title: cn('text-sm! font-normal!'),
           actionButton: cn('bg-white! rounded-md', 'hover:bg-white/80! duration-200! transition-colors!'),
         },
-        duration: 20000,
+        duration: 2000,
       }}
       {...props}
     />
