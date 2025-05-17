@@ -7,7 +7,7 @@ import {cn} from '@/lib/utils'
 import Layout from '~/Global/Layout'
 import TabData from '~/Global/Header/TabData'
 import {ExpandButton} from '~/UI/Button'
-import {ControlsBack} from '~~popup/colors/Controls'
+import {ControlsBack} from '~/UI/Controls'
 import NotFound from '~/UI/NotFound'
 
 export function Favorites() {

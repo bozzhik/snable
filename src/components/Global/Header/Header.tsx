@@ -15,6 +15,8 @@ import Button, {BUTTON_STYLES} from '~/UI/Button'
 import {X, Star, AlignJustify} from 'lucide-react'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '~/UI/Dropdown'
 
+export const BLUR_BG = 'bg-[#121212f7] backdrop-blur-sm'
+
 export default function Header() {
   const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -52,7 +54,7 @@ export default function Header() {
   }
 
   return (
-    <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between bg-[#121212f7] backdrop-blur-sm border-b-3 border-control')}>
+    <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between', BLUR_BG, 'border-b-3 border-control')}>
       <div className="flex items-center gap-[3px]">
         <a href="https://snable.website" target="_blank" className={cn(MODULE_STYLE.box, 'p-2 group')}>
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>

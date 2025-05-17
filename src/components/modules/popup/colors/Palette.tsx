@@ -1,6 +1,5 @@
-import type {ColorsResponse} from '_modules/popup/details/Colors'
+import type {ColorsResponse, ColorMode} from '_modules/popup/details/Colors'
 import type {ColorData} from '_scripts/colorsExtractor'
-import type {ColorMode} from '~~popup/colors/Controls'
 
 import {useCopy} from '_hooks/useCopy'
 import {cn} from '@/lib/utils'
@@ -10,7 +9,7 @@ import ColorCell from '~/UI/ColorCell'
 import {H3} from '~/UI/Typography'
 import {Copy, Check} from 'lucide-react'
 
-export default function Palette({data, format}: {data: ColorsResponse | undefined; format: ColorMode}) {
+export default function Palette({data, format, className}: {data: ColorsResponse | undefined; format: ColorMode; className?: string}) {
   const getColorMode = (color: string): string => {
     switch (format) {
       case 'hex':
@@ -25,7 +24,7 @@ export default function Palette({data, format}: {data: ColorsResponse | undefine
   }
 
   return (
-    <section data-section="palette-colors" className="space-y-2">
+    <section data-section="palette-colors" className={cn('space-y-2', className)}>
       {data?.colors.map(({color, isContrasted}) => <PaletteItem key={color} color={getColorMode(color)} isContrasted={isContrasted} />)}
     </section>
   )

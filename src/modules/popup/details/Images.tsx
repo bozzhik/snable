@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
 import Gallery from '~~popup/images/Gallery'
-import {ControlsBack} from '~~popup/colors/Controls'
+import {ControlsBack} from '~/UI/Controls'
 
 export type ImagesResponse = {
   images: ImageData[]
