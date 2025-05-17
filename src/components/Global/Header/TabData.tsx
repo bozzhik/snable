@@ -1,25 +1,14 @@
 import type {TabInfo} from '@/background/getTabData'
-import {MODULE_STYLE, WEBSITE_PATH} from '@/lib/constants'
+import {MODULE_STYLE} from '@/lib/constants'
+
+import {sendTabData} from '@/lib/backend'
+import {getDomain} from '@/utils/getDomain'
+import {cn} from '@/lib/utils'
 
 import {useEffect} from 'react'
-import {cn} from '@/lib/utils'
-import {getDomain} from '@/utils/getDomain'
 
 import {H3, SPAN} from '~/UI/Typography'
 import {Ban, X} from 'lucide-react'
-
-const sendTabToAPI = async (tabInfo: TabInfo) => {
-  try {
-    const res = await fetch(`${WEBSITE_PATH}/api/session`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(tabInfo),
-    })
-    if (!res.ok) throw Error('Failed to send tab data')
-  } catch (error) {
-    console.error('Error sending tab data:', error)
-  }
-}
 
 export default function TabData({tab, view, className, onRemove}: {tab: TabInfo; view: 'header' | 'favorites'; className?: string; onRemove?: () => void}) {
   const {favicon, title, url} = tab
@@ -33,10 +22,10 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
 
       if (!wasDataSent) {
         setTimeout(() => {
-          sendTabToAPI(tab)
+          sendTabData(tab)
           const updatedSessions = [...sessions, url]
           localStorage.setItem('sessions', JSON.stringify(updatedSessions))
-        }, 5000)
+        }, 1000)
       }
     }
   }, [tab, headerTab])
