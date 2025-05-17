@@ -3,10 +3,12 @@ import {BOX_STYLES} from '~/Global/Container'
 import {HEADER_MENU, MODULE_STYLE} from '@/lib/constants'
 import {ROUTES} from '@/lib/routes'
 
+import {developerController} from '@/lib/developer-controller'
+import {favoritesController} from '@/lib/favorites-controller'
+import {cn} from '@/lib/utils'
+
 import {useEffect, useState} from 'react'
 import {useHashLocation} from 'wouter/use-hash-location'
-import {cn} from '@/lib/utils'
-import {favoritesController} from '@/lib/favorites-controller'
 import {toast} from 'sonner'
 
 import {Link} from 'wouter'
@@ -57,7 +59,7 @@ export default function Header() {
     <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between', BLUR_BG, 'border-b-3 border-control')}>
       <div className="flex items-center gap-[3px]">
         <a href="https://snable.website" target="_blank" className={cn(MODULE_STYLE.box, 'p-2 group')}>
-          <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
+          <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300', developerController.isDebugMode && 'bg-gray')}></div>
         </a>
 
         <X className={cn('size-4 text-gray', isNonDetailsPage && 'opacity-0')} />

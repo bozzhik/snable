@@ -2,8 +2,15 @@ import type {TabInfo} from '@/background/getTabData'
 
 import {WEBSITE_PATH} from '@/lib/constants'
 
+import {developerController} from '@/lib/developer-controller'
+
 export async function sendTabData(tabInfo: TabInfo) {
   try {
+    if (developerController.getControl('DISABLE_SEND')) {
+      console.log('DATA SENDING - DISABLED')
+      return
+    }
+
     const res = await fetch(`${WEBSITE_PATH}/api/session`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
