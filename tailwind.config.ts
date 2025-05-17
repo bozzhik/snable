@@ -11,10 +11,17 @@ export default {
     },
     colors: {
       background: '#121212',
-      unit: '#191919',
+      unit: {
+        DEFAULT: '#191919',
+        dark: '#171717',
+      },
       control: '#1F1F1F',
       white: '#FFFFFF',
-      gray: '#818181',
+      gray: {
+        DEFAULT: '#818181',
+        medium: '#444444',
+        dark: '#3D3D3D',
+      },
       transparent: 'transparent',
     },
   },

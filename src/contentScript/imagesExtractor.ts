@@ -1,4 +1,5 @@
-export type ImageType = 'img' | 'bg-image' | 'icon'
+export const types = ['img', 'bg-image', 'icon'] as const
+export type ImageType = (typeof types)[number]
 
 export type ImageData = {
   type: ImageType
