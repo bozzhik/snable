@@ -2,7 +2,7 @@ import type {TabInfo} from '_bg/getTabData'
 
 export type Favorite = TabInfo
 
-export const favoritesManager = {
+export const favoritesController = {
   getFavorites(): Favorite[] {
     try {
       return JSON.parse(localStorage.getItem('favorites') ?? '[]')

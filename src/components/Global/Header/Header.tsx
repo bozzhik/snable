@@ -6,7 +6,7 @@ import {ROUTES} from '@/lib/routes'
 import {useEffect, useState} from 'react'
 import {useHashLocation} from 'wouter/use-hash-location'
 import {cn} from '@/lib/utils'
-import {favoritesManager} from '@/lib/favoritesManager'
+import {favoritesController} from '@/lib/favorites-controller'
 import {toast} from 'sonner'
 
 import {Link} from 'wouter'
@@ -28,7 +28,7 @@ export default function Header() {
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
       setTabData(response)
-      setIsFavorite(favoritesManager.isFavorite(response.url))
+      setIsFavorite(favoritesController.isFavorite(response.url))
     })
   }, [])
 
@@ -36,7 +36,7 @@ export default function Header() {
     if (!tabData.url) return
 
     setIsFavorite(
-      favoritesManager.toggleFavorite({
+      favoritesController.toggleFavorite({
         url: tabData.url,
         title: tabData.title,
         favicon: tabData.favicon,
@@ -77,7 +77,7 @@ export default function Header() {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent className="mt-0.5 mr-2.5">
-            {HEADER_MENU.filter((item) => item.label !== 'Favorites' || favoritesManager.hasFavorites()).map(({label, to, href}, index) => (
+            {HEADER_MENU.filter((item) => item.label !== 'Favorites' || favoritesController.hasFavorites()).map(({label, to, href}, index) => (
               <DropdownMenuItem key={index} className="cursor-pointer" asChild>
                 {to ? (
                   <Link href={to}>{label}</Link>
