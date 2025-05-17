@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.12
+
+### Patch Changes
+
+- 7bedaef: add `Controls` into `Images` popup details module
+- 44bb370: make `Controls` UI component instead of `Controls` colors block
+
 ## 0.1.11
 
 ### Patch Changes

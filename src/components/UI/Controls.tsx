@@ -27,7 +27,7 @@ export function ControlsTabItem({item, isSelected, onClick}: {item: string; isSe
 
 export default function Controls({children}: {children: React.ReactNode}) {
   return (
-    <section data-section="controls" className={cn('fixed inset-0 w-full h-fit', 'top-16 pt-4 pb-2.5 ', BLUR_BG)}>
+    <section data-section="controls" className={cn('fixed z-[90] inset-0 w-full h-fit', 'top-16 pt-4 pb-2.5 ', BLUR_BG)}>
       <div className="flex justify-between gap-3 mx-3">
         <ControlsBack className="w-fit" />
 
