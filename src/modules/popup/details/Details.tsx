@@ -1,6 +1,7 @@
 import type {Units} from '_scripts/index'
 
 import {developerController} from '@/lib/developer-controller'
+import {userController} from '@/lib/user-controller'
 
 import {useEffect, useState} from 'react'
 
@@ -23,6 +24,7 @@ export function Details() {
   }, [])
 
   developerController.initControls()
+  userController.init()
 
   return (
     <Layout className="space-y-2.5">

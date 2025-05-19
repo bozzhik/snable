@@ -2,6 +2,7 @@ import type {TabInfo} from '@/background/getTabData'
 import {MODULE_STYLE} from '@/lib/constants'
 
 import {sendTabData} from '@/lib/backend'
+import {userController} from '@/lib/user-controller'
 import {getDomain} from '@/utils/getDomain'
 import {cn} from '@/lib/utils'
 
@@ -21,14 +22,18 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
       const wasDataSent = sessions.includes(url)
 
       if (!wasDataSent) {
-        setTimeout(() => {
-          sendTabData(tab)
+        setTimeout(async () => {
+          await sendTabData(tab)
+
           const updatedSessions = [...sessions, url]
           localStorage.setItem('sessions', JSON.stringify(updatedSessions))
+
+          userController.updateSnabled()
+          await userController.sync()
         }, 1000)
       }
     }
-  }, [tab, headerTab])
+  }, [url])
 
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>
