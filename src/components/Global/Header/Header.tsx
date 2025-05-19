@@ -34,16 +34,16 @@ export default function Header() {
     })
   }, [])
 
-  function handleFavoriteClick() {
+  async function handleFavoriteClick() {
     if (!tabData.url) return
 
-    setIsFavorite(
-      favoritesController.toggleFavorite({
-        url: tabData.url,
-        title: tabData.title,
-        favicon: tabData.favicon,
-      }),
-    )
+    const newState = await favoritesController.toggleFavorite({
+      url: tabData.url,
+      title: tabData.title,
+      favicon: tabData.favicon,
+    })
+
+    setIsFavorite(newState)
 
     toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`, {
       ...(!isFavorite && {

@@ -37,7 +37,7 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
 
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>
-      <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden', !headerTab && 'size-[48px] group')}>
+      <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden flex-shrink-0', !headerTab && 'size-[48px] group')}>
         {favicon ? (
           <img src={favicon} className={cn('size-full', 'group-hover:opacity-15 duration-300')} alt="website favicon" />
         ) : (
