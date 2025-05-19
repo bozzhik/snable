@@ -1,25 +1,15 @@
 import type {TabInfo} from '@/background/getTabData'
-import {MODULE_STYLE, WEBSITE_PATH} from '@/lib/constants'
+import {MODULE_STYLE} from '@/lib/constants'
+
+import {sendTabData} from '@/lib/backend'
+import {userController} from '@/lib/user-controller'
+import {getDomain} from '@/utils/getDomain'
+import {cn} from '@/lib/utils'
 
 import {useEffect} from 'react'
-import {cn} from '@/lib/utils'
-import {getDomain} from '@/utils/getDomain'
 
 import {H3, SPAN} from '~/UI/Typography'
 import {Ban, X} from 'lucide-react'
-
-const sendTabToAPI = async (tabInfo: TabInfo) => {
-  try {
-    const res = await fetch(`${WEBSITE_PATH}/api/session`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(tabInfo),
-    })
-    if (!res.ok) throw Error('Failed to send tab data')
-  } catch (error) {
-    console.error('Error sending tab data:', error)
-  }
-}
 
 export default function TabData({tab, view, className, onRemove}: {tab: TabInfo; view: 'header' | 'favorites'; className?: string; onRemove?: () => void}) {
   const {favicon, title, url} = tab
@@ -32,18 +22,22 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
       const wasDataSent = sessions.includes(url)
 
       if (!wasDataSent) {
-        setTimeout(() => {
-          sendTabToAPI(tab)
+        setTimeout(async () => {
+          await sendTabData(tab)
+
           const updatedSessions = [...sessions, url]
           localStorage.setItem('sessions', JSON.stringify(updatedSessions))
-        }, 5000)
+
+          userController.updateSnabled()
+          await userController.sync()
+        }, 1000)
       }
     }
-  }, [tab, headerTab])
+  }, [url])
 
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>
-      <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden', !headerTab && 'size-[48px] group')}>
+      <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden flex-shrink-0', !headerTab && 'size-[48px] group')}>
         {favicon ? (
           <img src={favicon} className={cn('size-full', 'group-hover:opacity-15 duration-300')} alt="website favicon" />
         ) : (

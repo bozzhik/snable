@@ -1,7 +1,7 @@
 import {unitStyles} from '~/UI/Unit'
 
 import {useEffect, useState} from 'react'
-import {favoritesManager, type Favorite} from '@/lib/favoritesManager'
+import {favoritesController, type Favorite} from '@/lib/favorites-controller'
 import {cn} from '@/lib/utils'
 
 import Layout from '~/Global/Layout'
@@ -14,25 +14,25 @@ export function Favorites() {
   const [favorites, setFavorites] = useState<Favorite[]>([])
 
   useEffect(() => {
-    setFavorites(favoritesManager.getFavorites())
+    setFavorites(favoritesController.getFavorites())
 
     const handleStorageChange = () => {
-      setFavorites(favoritesManager.getFavorites())
+      setFavorites(favoritesController.getFavorites())
     }
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   const handleRemoveFavorite = (url: string) => {
-    favoritesManager.removeFavorite(url)
-    setFavorites(favoritesManager.getFavorites())
+    favoritesController.removeFavorite(url)
+    setFavorites(favoritesController.getFavorites())
   }
 
   return (
     <Layout className="space-y-2.5">
       <ControlsBack />
 
-      {favoritesManager.hasFavorites() ? (
+      {favoritesController.hasFavorites() ? (
         favorites.map((tab) => (
           <div className={cn(unitStyles, 'flex justify-between')} key={tab.url}>
             <TabData view="favorites" tab={tab} onRemove={() => handleRemoveFavorite(tab.url)} />

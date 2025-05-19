@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.1.13
+
+### Patch Changes
+
+- 0ec2f6f: ~ fix `size` issue in `TabData` Header sub-component
+- 020f968: init `userController` to manage `user` data
+- 1fd017a: init `developerController` for `dev` features
+- ed0aa87: ~ reinit `favoritesController` to manage `favorites`
+- daa0dad: init `backend` lib file for `interaction` requests
+
 ## 0.1.12
 
 ### Patch Changes
@@ -41,7 +51,7 @@
 
 ### Patch Changes
 
-- 72ddeb6: add `hasFavorites` method for `favouritesManager`
+- 72ddeb6: add `hasFavorites` method for `favoritesManager`
 - 4c9d86c: add `onRemove` prop for `TabData` in `favorites` view
 - 427ddb4: add `view` prop for `TabData` Header sub-component
 - 048502e: upgrade `ExpandButton` UI sub-component
@@ -53,7 +63,7 @@
 
 ### Patch Changes
 
-- a1d1e7d: init `favouritesManager` file for `Header` Global component
+- a1d1e7d: init `favoritesManager` file for `Header` Global component
 - de0a05a: init `favorites` button in `Header` Global component
 
 ## 0.1.5

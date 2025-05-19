@@ -3,10 +3,12 @@ import {BOX_STYLES} from '~/Global/Container'
 import {HEADER_MENU, MODULE_STYLE} from '@/lib/constants'
 import {ROUTES} from '@/lib/routes'
 
+import {developerController} from '@/lib/developer-controller'
+import {favoritesController} from '@/lib/favorites-controller'
+import {cn} from '@/lib/utils'
+
 import {useEffect, useState} from 'react'
 import {useHashLocation} from 'wouter/use-hash-location'
-import {cn} from '@/lib/utils'
-import {favoritesManager} from '@/lib/favoritesManager'
 import {toast} from 'sonner'
 
 import {Link} from 'wouter'
@@ -28,20 +30,20 @@ export default function Header() {
   useEffect(() => {
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
       setTabData(response)
-      setIsFavorite(favoritesManager.isFavorite(response.url))
+      setIsFavorite(favoritesController.isFavorite(response.url))
     })
   }, [])
 
-  function handleFavoriteClick() {
+  async function handleFavoriteClick() {
     if (!tabData.url) return
 
-    setIsFavorite(
-      favoritesManager.toggleFavorite({
-        url: tabData.url,
-        title: tabData.title,
-        favicon: tabData.favicon,
-      }),
-    )
+    const newState = await favoritesController.toggleFavorite({
+      url: tabData.url,
+      title: tabData.title,
+      favicon: tabData.favicon,
+    })
+
+    setIsFavorite(newState)
 
     toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`, {
       ...(!isFavorite && {
@@ -57,7 +59,7 @@ export default function Header() {
     <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between', BLUR_BG, 'border-b-3 border-control')}>
       <div className="flex items-center gap-[3px]">
         <a href="https://snable.website" target="_blank" className={cn(MODULE_STYLE.box, 'p-2 group')}>
-          <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300')}></div>
+          <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300', developerController.isDebugMode && 'bg-gray')}></div>
         </a>
 
         <X className={cn('size-4 text-gray', isNonDetailsPage && 'opacity-0')} />
@@ -77,7 +79,7 @@ export default function Header() {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent className="mt-0.5 mr-2.5">
-            {HEADER_MENU.filter((item) => item.label !== 'Favorites' || favoritesManager.hasFavorites()).map(({label, to, href}, index) => (
+            {HEADER_MENU.filter((item) => item.label !== 'Favorites' || favoritesController.hasFavorites()).map(({label, to, href}, index) => (
               <DropdownMenuItem key={index} className="cursor-pointer" asChild>
                 {to ? (
                   <Link href={to}>{label}</Link>
