@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.1.14
+
+### Patch Changes
+
+- d83787f: fix `initialization` of developer and user `controllers`
+- 2f321f9: implement `download` functionality for `images` unit
+- d25607d: refine `fontsExtractor` for improved parsing `fonts` data
+
 ## 0.1.13
 
 ### Patch Changes

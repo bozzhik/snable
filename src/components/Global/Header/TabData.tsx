@@ -33,7 +33,7 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
         }, 1000)
       }
     }
-  }, [url])
+  }, [headerTab, url])
 
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>

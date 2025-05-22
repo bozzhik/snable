@@ -21,10 +21,10 @@ export function Details() {
         }
       })
     })
-  }, [])
 
-  developerController.initControls()
-  userController.init()
+    developerController.initControls()
+    userController.init()
+  }, [])
 
   return (
     <Layout className="space-y-2.5">
