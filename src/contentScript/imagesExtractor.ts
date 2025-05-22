@@ -4,10 +4,7 @@ export type ImageType = (typeof types)[number]
 export type ImageData = {
   type: ImageType
   src: string
-}
-
-function isSvgImage(src: string): boolean {
-  return src.endsWith('.svg') || src.includes('data:image/svg+xml')
+  name?: string
 }
 
 export function imagesExtractor(): ImageData[] {
@@ -45,13 +42,30 @@ export function imagesExtractor(): ImageData[] {
     }
   })
 
+  function cleanIconName(name: string): string {
+    return name
+      .replace(/[^a-zA-Z0-9-_\s]/g, '') // remove special characters
+      .replace(/\s+/g, '-') // replace spaces with hyphens
+      .toLowerCase()
+      .trim()
+  }
+
   const inlineSvgElements = document.querySelectorAll('svg')
   inlineSvgElements.forEach((el) => {
     const svgString = new XMLSerializer().serializeToString(el)
-    const dataUri = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString)
+    const blob = new Blob([svgString], {type: 'image/svg+xml'})
+    const dataUri = URL.createObjectURL(blob)
+
+    let iconName = el.getAttribute('id') || el.getAttribute('data-name') || el.getAttribute('aria-label') || el.querySelector('title')?.textContent || 'icon'
+
+    const name = cleanIconName(iconName)
 
     if (!images.some((image) => image.src === dataUri)) {
-      images.push({type: 'icon', src: dataUri})
+      images.push({
+        type: 'icon',
+        src: dataUri,
+        name,
+      })
     }
   })
 

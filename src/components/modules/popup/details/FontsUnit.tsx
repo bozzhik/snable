@@ -19,7 +19,7 @@ export default function FontsUnit({data}: {data: FontData[] | undefined}) {
   return (
     <Unit token="fonts" className={cn('p-0 bg-transparent', 'space-y-2')}>
       {Object.values(data)
-        .slice(0, 3)
+        .slice(0, 4)
         .map(({font, weights}) => (
           <div key={font} className={cn(unitStyles, 'px-2.5 py-1.5')}>
             <H2 className="first-letter:uppercase">{font}</H2>

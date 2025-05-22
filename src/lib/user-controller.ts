@@ -24,6 +24,9 @@ export const userController = {
     } else {
       console.log('Existing user found:', existingData)
     }
+
+    this.updateSnabled()
+    this.updateFavorites()
   },
 
   getUserData(): UserData | null {

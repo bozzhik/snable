@@ -3,51 +3,89 @@ export type FontData = {
   weights: string[]
 }
 
-const fallbackFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont'])
+const fallbackFonts = new Set(['sans-serif', 'serif', 'monospace', 'cursive', 'fantasy', 'system-ui', 'ui-sans-serif', 'ui-serif', 'ui-monospace', 'ui-rounded', '-apple-system', 'BlinkMacSystemFont', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'])
 
-const bullshitFonts = new Set(['Arial', 'Roboto', 'Roboto Draft', 'Helvetica', 'SFMono-Regular', 'Times New Roman', 'Consolas', 'Liberation Mono', 'Courier New', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Menlo', 'Monaco'])
+const systemFonts = new Set(['Helvetica', 'Arial', 'Georgia', 'Cambria', 'SFMono-Regular', 'Times New Roman', 'Times', 'Consolas', 'Liberation Mono', 'Courier New', 'Menlo', 'Monaco'])
 
 function normalizeFontName(font: string): string {
   return font.replace(/\s+/g, '').toLowerCase()
 }
 
 const fallbackFontsNormalized = new Set(Array.from(fallbackFonts).map((font) => normalizeFontName(font)))
+const systemFontsNormalized = new Set(Array.from(systemFonts).map((font) => normalizeFontName(font)))
 
 export function fontsExtractor(): FontData[] {
   const elements = document.querySelectorAll('*')
-  const fontMap = new Map<string, Set<string>>()
+  const customFonts = new Map<string, Set<string>>()
 
+  // First pass: collect all custom fonts
   elements.forEach((el) => {
     const styles = window.getComputedStyle(el)
     const fontFamily = styles.fontFamily
     const fontWeight = styles.fontWeight
 
     if (fontFamily) {
-      const fonts = fontFamily
-        .split(',')
-        .map((font) => cleanFontName(font.trim().replace(/['"]/g, '')))
-        .filter((font) => !fallbackFontsNormalized.has(normalizeFontName(font)))
+      const fonts = fontFamily.split(',')
 
-      fonts.forEach((font) => {
-        if (!fontMap.has(font)) {
-          fontMap.set(font, new Set())
+      for (const font of fonts) {
+        const cleanFont = font.trim().replace(/['"]/g, '')
+        const normalizedFont = normalizeFontName(cleanFont)
+
+        if (cleanFont.includes('Emoji') || cleanFont.includes('Symbol')) {
+          continue
         }
-        fontMap.get(font)!.add(fontWeight)
-      })
+
+        // Only collect custom fonts (non-fallback, non-system)
+        if (!fallbackFontsNormalized.has(normalizedFont) && !systemFontsNormalized.has(normalizedFont)) {
+          const cleanedFont = cleanFontName(cleanFont)
+          if (!customFonts.has(cleanedFont)) {
+            customFonts.set(cleanedFont, new Set())
+          }
+          customFonts.get(cleanedFont)!.add(fontWeight)
+          break // Stop after finding first custom font
+        }
+      }
     }
   })
 
-  const sortedFonts: FontData[] = Array.from(fontMap.entries()).map(([font, weights]) => ({
+  // If no custom fonts found, do a second pass for system fonts
+  if (customFonts.size === 0) {
+    const systemFontsFound = new Map<string, Set<string>>()
+
+    elements.forEach((el) => {
+      const styles = window.getComputedStyle(el)
+      const fontFamily = styles.fontFamily
+      const fontWeight = styles.fontWeight
+
+      if (fontFamily) {
+        const fonts = fontFamily.split(',')
+
+        for (const font of fonts) {
+          const cleanFont = font.trim().replace(/['"]/g, '')
+          const normalizedFont = normalizeFontName(cleanFont)
+
+          if (systemFontsNormalized.has(normalizedFont)) {
+            const cleanedFont = cleanFontName(cleanFont)
+            if (!systemFontsFound.has(cleanedFont)) {
+              systemFontsFound.set(cleanedFont, new Set())
+            }
+            systemFontsFound.get(cleanedFont)!.add(fontWeight)
+            break // Stop after finding first system font
+          }
+        }
+      }
+    })
+
+    return Array.from(systemFontsFound.entries()).map(([font, weights]) => ({
+      font,
+      weights: Array.from(weights).sort(),
+    }))
+  }
+
+  return Array.from(customFonts.entries()).map(([font, weights]) => ({
     font,
     weights: Array.from(weights).sort(),
   }))
-
-  const nonBullshitFonts = sortedFonts.filter((fontData) => !bullshitFonts.has(fontData.font))
-  if (nonBullshitFonts.length > 0) {
-    return nonBullshitFonts
-  }
-
-  return sortedFonts
 }
 
 function cleanFontName(font: string): string {
