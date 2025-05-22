@@ -27,6 +27,10 @@ export default defineManifest({
       matches: ['http://*/*', 'https://*/*'],
       js: ['src/contentScript/index.ts'],
     },
+    {
+      matches: ['http://*/*', 'https://*/*'],
+      js: ['src/contentScript/fontHighlighter.ts'],
+    },
   ],
   web_accessible_resources: [
     {
