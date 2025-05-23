@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.15
+
+### Patch Changes
+
+- 2755022: update `privacy-policy` link in `Details` popup view
+- 28fdf87: ~ fix `colors` into `ImageCell` UI component
+
 ## 0.1.14
 
 ### Patch Changes
