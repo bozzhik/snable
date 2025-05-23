@@ -1,17 +1,30 @@
 import type {Units} from '_scripts/index'
+import type {TabInfo} from '_bg/getTabData'
+
 import {EXT_VERSION} from '@/lib/constants'
 
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {cn} from '@/lib/utils'
 
 export default function FigmaBridge({data}: {data?: Units}) {
   const [isCopied, setIsCopied] = useState(false)
+  const [tabData, setTabData] = useState<TabInfo>({} as TabInfo)
+
+  useEffect(() => {
+    chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
+      setTabData(response)
+    })
+  }, [])
 
   const handleCopyToFigma = () => {
     if (!data) return
 
     const figmaData = {
       version: EXT_VERSION,
+      snabled: {
+        title: tabData?.title || '',
+        url: tabData?.url || '',
+      },
       units: {
         colors: data.colors?.map((item) => ({
           value: item.color,
