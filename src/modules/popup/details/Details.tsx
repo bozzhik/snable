@@ -9,6 +9,7 @@ import Layout from '~/Global/Layout'
 import FontsUnit from '~~popup/details/FontsUnit'
 import ColorsUnit from '~~popup/details/ColorsUnit'
 import ImagesUnit from '~~popup/details/ImagesUnit'
+import FigmaIntegration from '~~popup/details/FigmaIntegration'
 
 export function Details() {
   const [units, setUnits] = useState<Units>()
@@ -28,6 +29,7 @@ export function Details() {
 
   return (
     <Layout className="space-y-2.5">
+      <FigmaIntegration data={units} />
       <FontsUnit data={units?.fonts} />
       <ColorsUnit data={units?.colors} />
       <ImagesUnit data={units?.images} />
