@@ -69,7 +69,7 @@ export default function ImageCell({source, type, view}: Props) {
         className={cn(
           'absolute size-fit grid place-items-center cursor-pointer group/button',
           isDetails ? 'bottom-1 left-1 p-[5px]' : 'inset-1.5 p-1.5', // based on view
-          'opacity-0 bg-background/90 rounded-sm',
+          'opacity-0 bg-[#191919f4] rounded-sm',
           'group-hover/cell:opacity-100 duration-200',
         )}
       >
