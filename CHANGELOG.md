@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.1.16
+
+### Patch Changes
+
+- 7386d57: ~ fix `size` of `ImageCell` UI component
+- b7d832a: improve `favouritesController` with `optimistic` UI updates
+
 ## 0.1.15
 
 ### Patch Changes

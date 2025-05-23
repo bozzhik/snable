@@ -61,7 +61,7 @@ export default function ImageCell({source, type, view}: Props) {
   }
 
   return (
-    <a href={source} className={cn('relative w-full h-20 rounded-lg bg-control/70', 'grid place-items-center overflow-hidden group/cell', !isDetails && 'h-auto bg-unit-dark', isIcon && (!isDetails ? 'p-4' : 'p-0'))} target="_blank" onClick={handleClick}>
+    <a href={source} className={cn('relative w-full h-20 rounded-lg bg-control/70', 'grid place-items-center overflow-hidden group/cell', !isDetails && 'min-h-20 h-auto bg-unit-dark', isIcon && (!isDetails ? 'p-4' : 'p-0'))} target="_blank" onClick={handleClick}>
       <img src={source} className={cn('w-full h-full object-center group-hover/cell:scale-[1.05] duration-300', isDetails ? 'object-cover' : 'object-contain', isIcon && (isDetails ? 'size-[70%]' : 'size-[90%]'))} alt={type} />
 
       <button
