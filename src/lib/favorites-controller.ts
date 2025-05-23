@@ -23,23 +23,39 @@ export const favoritesController = {
   async addFavorite(data: Favorite): Promise<void> {
     if (this.isFavorite(data.url)) return
 
+    // Optimistic UI update
     const favorites = [...this.getFavorites(), data]
     localStorage.setItem('favorites', JSON.stringify(favorites))
 
+    // Asynchronous background update
     userController.updateFavorites()
-    await userController.sync()
+    userController.sync().catch((error) => {
+      console.error('Synchronization error:', error)
+      // In case of an error, you can roll back the changes
+      const currentFavorites = this.getFavorites().filter((fav) => fav.url !== data.url)
+      localStorage.setItem('favorites', JSON.stringify(currentFavorites))
+    })
   },
 
   async removeFavorite(url: string): Promise<void> {
+    // Optimistic UI update
     const favorites = this.getFavorites().filter((fav) => fav.url !== url)
     localStorage.setItem('favorites', JSON.stringify(favorites))
 
+    // Asynchronous background update
     userController.updateFavorites()
-    await userController.sync()
+    userController.sync().catch((error) => {
+      console.error('Synchronization error:', error)
+      // In case of an error, you can roll back the changes
+      const previousFavorites = this.getFavorites()
+      localStorage.setItem('favorites', JSON.stringify(previousFavorites))
+    })
   },
 
   async toggleFavorite(data: Favorite): Promise<boolean> {
-    if (this.isFavorite(data.url)) {
+    const isFavorite = this.isFavorite(data.url)
+
+    if (isFavorite) {
       await this.removeFavorite(data.url)
       return false
     }
