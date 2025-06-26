@@ -5,10 +5,10 @@ import {Router, Route} from 'wouter'
 import {useHashLocation} from 'wouter/use-hash-location'
 import {ROUTES} from '@/lib/routes'
 
-import {Details} from '_modules/popup/details/Details'
-import {Colors} from '_modules/popup/details/Colors'
-import {Images} from '_modules/popup/details/Images'
-import {Favorites} from '_modules/popup/details/Favorites'
+import {Details} from '@/modules/popup/Details'
+import {Colors} from '@/modules/popup/Colors'
+import {Images} from '@/modules/popup/Images'
+import {Favorites} from '@/modules/popup/Favorites'
 
 import '@/globals.css'
 

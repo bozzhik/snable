@@ -1,4 +1,4 @@
-import type {ImagesResponse, ImageMode} from '_modules/popup/details/Images'
+import type {ImagesResponse, ImageMode} from '@/modules/popup/Images'
 
 import {cn} from '@/lib/utils'
 

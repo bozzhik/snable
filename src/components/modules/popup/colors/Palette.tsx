@@ -1,4 +1,4 @@
-import type {ColorsResponse, ColorMode} from '_modules/popup/details/Colors'
+import type {ColorsResponse, ColorMode} from '@/modules/popup/Colors'
 import type {ColorData} from '_scripts/colorsExtractor'
 
 import {useCopy} from '_hooks/useCopy'
