@@ -1,5 +1,6 @@
 import figmaIcon from '$/figma.svg'
 
+import type {Units} from '_scripts/index'
 import {EXT_VERSION} from '@/lib/constants'
 
 import {useState} from 'react'
@@ -9,13 +10,31 @@ import {toast} from 'sonner'
 
 import {H3} from '~/UI/Typography'
 
-export default function FigmaBridge() {
+export default function FigmaBridge({data}: {data: Units | null}) {
   const [isCopied, setIsCopied] = useState(false)
 
   const handleCopyToFigma = () => {
+    if (!data) return toast('No data found')
+
     const figmaData = {
       version: EXT_VERSION,
-      units: null,
+      units: {
+        colors: data.colors?.map((item) => ({
+          value: item.color,
+          isContrasted: item.isContrasted,
+        })),
+        fonts: data.fonts?.map((item) => ({
+          font: item.font,
+          weights: item.weights,
+        })),
+        images: data.images
+          ?.filter((item) => item.type === 'icon')
+          .map((item) => ({
+            type: item.type,
+            src: item.src,
+            name: item.name,
+          })),
+      },
     }
 
     navigator.clipboard
@@ -25,7 +44,7 @@ export default function FigmaBridge() {
         setTimeout(() => {
           setIsCopied(false)
         }, 1000)
-        console.log('Data copied for Figma plugin')
+        console.log('Data copied for Figma plugin', figmaData)
         toast('Data copied for Figma plugin')
       })
       .catch((err) => {

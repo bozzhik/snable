@@ -29,7 +29,7 @@ export function Details() {
 
   return (
     <Layout className="space-y-2.5">
-      <FigmaBridge />
+      <FigmaBridge data={units || null} />
 
       <FontsUnit data={units?.fonts} />
       <ColorsUnit data={units?.colors} />
