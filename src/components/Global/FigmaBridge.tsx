@@ -47,7 +47,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   }
 
   const handleCopyToFigma = () => {
-    if (!data) return toast('No data was found for this request.')
+    if (!data) return toast('No data was found for this request')
 
     const figmaData = {
       version: EXT_VERSION,
@@ -65,7 +65,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
           weights: item.weights,
         })),
         images: data.images
-          ?.filter((item) => item.type === 'icon')
+          ?.filter((item) => item.type === 'img')
           .map((item) => ({
             type: item.type,
             src: item.src,
@@ -98,7 +98,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
       })
       .catch((err) => {
         console.error('Failed to copy data:', err)
-        toast('Copy failed! Looks like a dev task.')
+        toast('Copy failed! Looks like a dev task')
       })
   }
 
