@@ -6,6 +6,8 @@ export const EXT_VERSION = packageData.version
 export const IS_DEV = process.env.NODE_ENV == 'development'
 export const WEBSITE_PATH = IS_DEV ? 'http://localhost:3000' : 'https://snable.website'
 
+export const FIGMA_PLUGIN_URL = 'https://www.figma.com/community/plugin/1507707678099986490'
+
 export const HEADER_MENU = [
   {
     label: 'Favorites',

@@ -9,6 +9,7 @@ import {Details} from '@/modules/popup/Details'
 import {Colors} from '@/modules/popup/Colors'
 import {Images} from '@/modules/popup/Images'
 import {Favorites} from '@/modules/popup/Favorites'
+import {Figma} from '@/modules/popup/Figma'
 
 import '@/globals.css'
 
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('module') as HTMLElement).render(
       <Route path={ROUTES.images} component={Images} />
 
       <Route path={ROUTES.favorites} component={Favorites} />
+      <Route path={ROUTES.figma} component={Figma} />
     </Router>
   </React.StrictMode>,
 )
