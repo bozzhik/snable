@@ -6,6 +6,7 @@ import {userController} from '@/lib/user-controller'
 import {useEffect, useState} from 'react'
 
 import Layout from '~/Global/Layout'
+import FigmaBridge from '~/Global/FigmaBridge'
 import FontsUnit from '~~popup/details/FontsUnit'
 import ColorsUnit from '~~popup/details/ColorsUnit'
 import ImagesUnit from '~~popup/details/ImagesUnit'
@@ -28,6 +29,8 @@ export function Details() {
 
   return (
     <Layout className="space-y-2.5">
+      <FigmaBridge data={units || null} />
+
       <FontsUnit data={units?.fonts} />
       <ColorsUnit data={units?.colors} />
       <ImagesUnit data={units?.images} />

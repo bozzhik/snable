@@ -3,4 +3,5 @@ export const ROUTES = {
   colors: '/colors',
   images: '/images',
   favorites: '/favorites',
+  figma: '/figma-plugin',
 }

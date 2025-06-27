@@ -1,6 +1,7 @@
 const ControlKey = {
   DEBUG: 'DEBUG_MODE',
   DISABLE_SEND: 'DISABLE_DATA_SEND',
+  PLUGIN_ONBOARDING: 'FIGMA_PLUGIN_ONBOARDING',
   EXAMPLE: 'EXAMPLE_FEATURE',
 } as const
 
@@ -24,7 +25,22 @@ export const developerController = {
     }
   },
 
+  setControl(key: keyof Controls, value: boolean): void {
+    localStorage.setItem(ControlKey[key], JSON.stringify(value))
+  },
+
   get isDebugMode(): boolean {
     return this.getControl('DEBUG')
+  },
+
+  // developerController.getControl('DISABLE_SEND')
+
+  get isPluginEnabled(): boolean {
+    return this.getControl('PLUGIN_ONBOARDING')
+  },
+
+  enablePlugin(): boolean {
+    this.setControl('PLUGIN_ONBOARDING', true)
+    return true
   },
 }

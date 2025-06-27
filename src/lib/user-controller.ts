@@ -7,6 +7,10 @@ export type UserData = {
   token: string
   snabled: string[]
   favorites: string[]
+  figma_bridge: {
+    count: number
+    urls: string[]
+  }
 }
 
 const STORAGE_KEY = 'user'
@@ -19,6 +23,10 @@ export const userController = {
         token: IS_DEV ? 'DEV' : generateToken(),
         snabled: [],
         favorites: [],
+        figma_bridge: {
+          count: 0,
+          urls: [],
+        },
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(initialData))
     } else {
@@ -32,7 +40,19 @@ export const userController = {
   getUserData(): UserData | null {
     try {
       const data = localStorage.getItem(STORAGE_KEY)
-      return data ? JSON.parse(data) : null
+      if (!data) return null
+
+      const userData = JSON.parse(data)
+
+      if (!userData.figma_bridge) {
+        userData.figma_bridge = {
+          count: 0,
+          urls: [],
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userData))
+      }
+
+      return userData
     } catch {
       return null
     }
@@ -56,6 +76,28 @@ export const userController = {
     data.favorites = favorites.map((fav: {url: string}) => fav.url)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
     console.log('Updated favorites list:', data.favorites)
+  },
+
+  trackFigmaBridge(options: {incrementClick?: boolean; addUrl?: string}): void {
+    const data = this.getUserData()
+    if (!data) return
+
+    const {incrementClick = false, addUrl} = options
+
+    if (incrementClick) {
+      data.figma_bridge.count++
+    }
+
+    if (addUrl && !data.figma_bridge.urls.includes(addUrl)) {
+      data.figma_bridge.urls.push(addUrl)
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    console.log('Figma bridge tracked:', {
+      count: data.figma_bridge.count,
+      newUrl: addUrl,
+      allUrls: data.figma_bridge.urls.length,
+    })
   },
 
   async sync(): Promise<void> {

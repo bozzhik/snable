@@ -9,6 +9,7 @@ type Props = {
 export type TypoTypes = keyof typeof typoClasses
 
 export const typoClasses = {
+  h1: cn('text-3xl leading-[1.1] font-semibold', 'text-white'),
   h2: cn('text-[28px] leading-[1.08] font-semibold', 'text-white'),
   h3: cn('text-lg text-gray leading-[1.3]', 'text-gray'),
   h4: cn('text-base', 'text-gray'),
@@ -30,6 +31,7 @@ function createTypography(type: TypoTypes) {
   return Component
 }
 
+export const H1 = createTypography('h1')
 export const H2 = createTypography('h2')
 export const H3 = createTypography('h3')
 export const H4 = createTypography('h4')

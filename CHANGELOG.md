@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.2.0
+
+### Minor Changes
+
+- fe61c41: complete `figma-bridge` functionality for extension
+- 94b91e7: init `/figma` popup page
+- dcec617: integrate `data` into `FigmaBridge` Global component
+- 3e5f025: init `FigmaBridge` Global component
+
 ## 0.1.16
 
 ### Patch Changes
