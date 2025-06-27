@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.2.1
+
+### Patch Changes
+
+- 31b6993: optimize `color` unit components
+- 9e221cf: fix `overflow` visual issue into `TabData` Header component
+- 31b4503: refine `Sonner` UI component
+
 ## 0.2.0
 
 ### Minor Changes
