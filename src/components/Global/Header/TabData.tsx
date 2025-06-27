@@ -35,6 +35,8 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
     }
   }, [headerTab, url])
 
+  const domain = url ? getDomain(url) : undefined
+
   return (
     <div className={cn('flex items-center', headerTab ? 'gap-3' : 'gap-2.5', className)}>
       <div className={cn(MODULE_STYLE.box, 'relative bg-transparent overflow-hidden flex-shrink-0', !headerTab && 'size-[48px] group')}>
@@ -55,7 +57,7 @@ export default function TabData({tab, view, className, onRemove}: {tab: TabInfo;
 
       <div className="-space-y-1 mt-0.5">
         {title && <H3 className={cn('text-white line-clamp-1', title.length > (headerTab ? 24 : 34) && 'bg-gradient-to-r from-white via-white to-gray/0 bg-clip-text text-transparent')}>{headerTab ? title.slice(0, 24) : title}</H3>}
-        {url && <SPAN>{getDomain(url)}</SPAN>}
+        {domain && <SPAN className="line-clamp-1">{domain.length > 30 ? `${domain.substring(0, 27)}...` : domain}</SPAN>}
       </div>
     </div>
   )
