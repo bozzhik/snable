@@ -47,7 +47,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   }
 
   const handleCopyToFigma = () => {
-    if (!data) return toast('No data found')
+    if (!data) return toast('No data was found for this request.')
 
     const figmaData = {
       version: EXT_VERSION,
@@ -86,9 +86,9 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
           setIsCopied(false)
         }, 1000)
         console.log('Data copied for Figma plugin', figmaData)
-        toast('Data copied for Figma plugin', {
+        toast('Copied! Go to Snable Figma Plugin', {
           action: {
-            label: 'Launch plugin',
+            label: 'Get plugin',
             onClick: () => {
               chrome.tabs.create({url: FIGMA_PLUGIN_URL})
             },
@@ -98,7 +98,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
       })
       .catch((err) => {
         console.error('Failed to copy data:', err)
-        toast('Failed to copy data. Contact developer')
+        toast('Copy failed! Looks like a dev task.')
       })
   }
 
