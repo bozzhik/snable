@@ -45,13 +45,11 @@ export default function Header() {
 
     setIsFavorite(newState)
 
-    toast(`${!isFavorite ? 'Added to favorites' : 'Removed from favorites'}`, {
-      ...(!isFavorite && {
-        action: {
-          label: 'View all',
-          onClick: () => navigate(ROUTES.favorites),
-        },
-      }),
+    toast(!isFavorite ? "It's now in your favorites! Check them out." : "It's out! No longer a favorite.", {
+      action: {
+        label: !isFavorite ? 'View all' : 'View favorites',
+        onClick: () => navigate(ROUTES.favorites),
+      },
     })
   }
 
