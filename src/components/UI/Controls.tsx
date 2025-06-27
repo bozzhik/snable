@@ -1,6 +1,6 @@
 import {ROUTES} from '@/lib/routes'
 import {MODULE_STYLE} from '@/lib/constants'
-import {BLUR_BG} from '~/Global/Header/Header'
+import {BLUR_BG} from '~/Global/Header'
 
 import {cn} from '@/lib/utils'
 

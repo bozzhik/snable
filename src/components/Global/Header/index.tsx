@@ -1,4 +1,4 @@
-import {type TabInfo} from '_bg/getTabData'
+import type {TabInfo} from '_bg/getTabData'
 import {BOX_STYLES} from '~/Global/Container'
 import {HEADER_MENU, MODULE_STYLE} from '@/lib/constants'
 import {ROUTES} from '@/lib/routes'
