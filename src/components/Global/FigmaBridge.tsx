@@ -49,9 +49,13 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   const handleCopyToFigma = () => {
     if (!data) return toast('No data was found for this request')
 
+    const userData = userController.getUserData()
+
     const figmaData = {
       version: EXT_VERSION,
+      token: userData?.token,
       snabled: {
+        favicon: tabData.favicon,
         title: tabData.title,
         url: tabData.url,
       },
@@ -64,13 +68,11 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
           font: item.font,
           weights: item.weights,
         })),
-        images: data.images
-          ?.filter((item) => item.type === 'img')
-          .map((item) => ({
-            type: item.type,
-            src: item.src,
-            name: item.name,
-          })),
+        images: data.images?.slice(0, 8).map((item) => ({
+          type: item.type,
+          src: item.src,
+          name: item.name,
+        })),
       },
     }
 
