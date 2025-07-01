@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.2.2
+
+### Patch Changes
+
+- b1a9f14: update extension `icons` (draft)
+- 7853cbb: fix `markPluginOnboarded` method of `developer` controller
+- 63e8bc9: [2] complete `figma-bridge` functionality for extension
+
 ## 0.2.1
 
 ### Patch Changes
