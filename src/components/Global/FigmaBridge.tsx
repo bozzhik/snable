@@ -24,7 +24,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   const [hasPlugin, setHasPlugin] = useState(false)
 
   useEffect(() => {
-    setHasPlugin(developerController.isPluginEnabled)
+    setHasPlugin(developerController.isPluginOnboarded)
 
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
       if (response?.url) {

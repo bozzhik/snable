@@ -30,7 +30,7 @@ export function Figma() {
   }, [])
 
   const handleEnablePlugin = () => {
-    developerController.enablePlugin
+    developerController.markPluginOnboarded()
     navigate(ROUTES.home)
   }
 
