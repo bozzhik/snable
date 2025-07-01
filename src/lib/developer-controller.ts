@@ -35,11 +35,11 @@ export const developerController = {
 
   // developerController.getControl('DISABLE_SEND')
 
-  get isPluginEnabled(): boolean {
+  get isPluginOnboarded(): boolean {
     return this.getControl('PLUGIN_ONBOARDING')
   },
 
-  enablePlugin(): boolean {
+  markPluginOnboarded(): boolean {
     this.setControl('PLUGIN_ONBOARDING', true)
     return true
   },

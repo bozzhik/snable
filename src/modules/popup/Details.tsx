@@ -37,7 +37,7 @@ export function Details() {
 
       <p className="text-xs text-gray-dark text-center leading-none group">
         we use data for advertising. check{' '}
-        <a className="text-gray-medium underline underline-offset-1 group-hover:no-underline" href="https://snable.website/privacy-policy" target="_blank">
+        <a className="text-gray-medium underline underline-offset-1 group-hover:no-underline" href="https://snable.website/privacy-policy?utm_source=snable_extension&utm_medium=extension&utm_campaign=collecting_data" target="_blank">
           privacy policy
         </a>
       </p>

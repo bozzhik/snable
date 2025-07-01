@@ -24,7 +24,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   const [hasPlugin, setHasPlugin] = useState(false)
 
   useEffect(() => {
-    setHasPlugin(developerController.isPluginEnabled)
+    setHasPlugin(developerController.isPluginOnboarded)
 
     chrome.runtime.sendMessage({type: 'GET_TAB_INFO'}, (response) => {
       if (response?.url) {
@@ -47,11 +47,15 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
   }
 
   const handleCopyToFigma = () => {
-    if (!data) return toast('No data was found for this request.')
+    if (!data) return toast('No data was found for this request')
+
+    const userData = userController.getUserData()
 
     const figmaData = {
       version: EXT_VERSION,
+      token: userData?.token,
       snabled: {
+        favicon: tabData.favicon,
         title: tabData.title,
         url: tabData.url,
       },
@@ -65,7 +69,8 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
           weights: item.weights,
         })),
         images: data.images
-          ?.filter((item) => item.type === 'icon')
+          ?.filter((item) => item.type === 'img')
+          .slice(0, 8)
           .map((item) => ({
             type: item.type,
             src: item.src,
@@ -98,7 +103,7 @@ export function FigmaBridgeButton({mode, data}: {mode: 'bridge' | 'page'; data: 
       })
       .catch((err) => {
         console.error('Failed to copy data:', err)
-        toast('Copy failed! Looks like a dev task.')
+        toast('Copy failed! Looks like a dev task')
       })
   }
 
