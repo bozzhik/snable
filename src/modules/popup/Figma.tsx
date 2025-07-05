@@ -51,10 +51,10 @@ export function Figma() {
             <a href={FIGMA_PLUGIN_URL} className="text-gray-dark underline hover:no-underline underline-offset-2" target="_blank">
               Snable Figma Plugin
             </a>
-            , click the copy button, and paste the collected data into Figma Plugin.
-            {/* <a href="https://snable.website/figma-plugin-guide" className="text-gray-dark underline hover:no-underline underline-offset-2" target="_blank">
+            , click the copy button, and paste collected data into Figma Plugin.{' '}
+            <a href="https://snable.website/figma-plugin-guide" className="text-gray-dark underline hover:no-underline underline-offset-2" target="_blank">
               Guide
-            </a> */}
+            </a>
           </H3>
 
           <div className="space-y-1.5">
