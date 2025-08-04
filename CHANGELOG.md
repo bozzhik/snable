@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.3
+
+### Patch Changes
+
+- 0421d59: add `guide` link into `/figma` page
+
 ## 0.2.2
 
 ### Patch Changes
