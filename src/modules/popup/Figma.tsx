@@ -52,7 +52,7 @@ export function Figma() {
               Snable Figma Plugin
             </a>
             , click the copy button, and paste collected data into Figma Plugin.{' '}
-            <a href="https://snable.website/figma-plugin-guide" className="text-gray-dark underline hover:no-underline underline-offset-2" target="_blank">
+            <a href="https://link.snable.website/guide" className="text-gray-dark underline hover:no-underline underline-offset-2" target="_blank">
               Guide
             </a>
           </H3>
