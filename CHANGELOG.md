@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.5
+
+### Patch Changes
+
+- 0fb8534: switch from `snable.website` to fallback domain `snable.bozzhik.com`
+
 ## 0.2.4
 
 ### Patch Changes

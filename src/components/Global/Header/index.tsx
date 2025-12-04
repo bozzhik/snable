@@ -56,7 +56,7 @@ export default function Header() {
   return (
     <header className={cn(BOX_STYLES, 'fixed z-[99] w-full', 'py-2.5 flex justify-between', BLUR_BG, 'border-b-3 border-control')}>
       <div className="flex items-center gap-[3px]">
-        <a href="https://snable.website" target="_blank" className={cn(MODULE_STYLE.box, 'p-2 group')}>
+        <a href="https://snable.bozzhik.com" target="_blank" className={cn(MODULE_STYLE.box, 'p-2 group')}>
           <div className={cn('size-full bg-white rounded-full', 'group-hover:scale-[1.1] group-hover:bg-white/80 duration-300', developerController.isDebugMode && 'bg-gray')}></div>
         </a>
 
